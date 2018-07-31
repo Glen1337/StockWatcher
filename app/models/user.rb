@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :username, presence: true, uniqueness: true
+
   has_many :portfolios, dependent: :destroy
   has_many :stock_holdings, through: :portfolios
 end
