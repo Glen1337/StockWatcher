@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user1 = User.create!(email: "mike@gmail.com", password: "password", username: 'glen')
-user2 = User.create!(email: "bob@gmail.com", password: "123456", username: 'bob')
-user3 = User.create!(email: "hey@hey.com", password: "welcome", username: 'ayy')
-user4 = User.create!(email: "example@yahoo.com", password: "twitter", username:'lmao')
+user1 = User.create!(email: "mike@gmail.com", password: "password", username: 'glen', balance: 10000)
+user2 = User.create!(email: "bob@gmail.com", password: "123456", username: 'bob', balance: 10000)
+user3 = User.create!(email: "hey@hey.com", password: "welcome", username: 'ayy', balance: 10000)
+user4 = User.create!(email: "example@yahoo.com", password: "twitter", username:'lmao', balance: 10000)
 
 port1 = Portfolio.create!(name: "energy", user: user1)
 port2 = Portfolio.create!(name: "CompSec", stock_holdings: [], user: user1)
