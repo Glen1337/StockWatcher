@@ -9,13 +9,12 @@
 user1 = User.create!(email: "mike@gmail.com", password: "password", username: 'glen')
 user2 = User.create!(email: "bob@gmail.com", password: "123456", username: 'bob')
 user3 = User.create!(email: "hey@hey.com", password: "welcome", username: 'ayy', balance: 10000)
-user4 = User.create!(email: "example@yahoo.com", password: "twitter", username:'lmao', balance: 10000)
 
-port1 = Portfolio.create!(name: "energy", user: user1)
+port1 = Portfolio.create!(name: "Energy", user: user1)
 port2 = Portfolio.create!(name: "CompSec", stock_holdings: [], user: user1)
 port3 = Portfolio.create!(name: "Primary", user: user3)
-port4 = Portfolio.create!(name: "tech", stock_holdings: [], user: user3)
-port5 = Portfolio.create!(name: "finance", stock_holdings: [], user: user1)
+port4 = Portfolio.create!(name: "Tech", stock_holdings: [], user: user3)
+port5 = Portfolio.create!(name: "Finance", stock_holdings: [], user: user2)
 
 stock1 = StockHolding.create!(ticker: "INTC", cost_basis: 48, quantity: 1000, portfolio: port4)
 stock2 = StockHolding.create!(ticker: "FEYE", cost_basis: 72.643, quantity: 32.6, portfolio: port2)
@@ -27,3 +26,4 @@ stock7 = StockHolding.create!(ticker: "ETP", cost_basis: 67, quantity: 55, portf
 stock8 = StockHolding.create!(ticker: "DIS", cost_basis: 32.2, quantity: 8.09, portfolio: port3)
 stock9 = StockHolding.create!(ticker: "JPM", cost_basis: 105, quantity: 2000, portfolio: port5)
 stock10 = StockHolding.create!(ticker: "WFC", cost_basis: 82.34, quantity: 2000.20, portfolio: port5)
+stock11 = StockHolding.create!(ticker: "KHC", cost_basis: 64.48, quantity: 800, portfolio: port3)

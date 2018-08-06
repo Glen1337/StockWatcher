@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :stock_holdings
-      resources :portfolios
+      resources :stock_holdings, only: [:destroy]
+      resources :portfolios, only: [:index, :show, :create]
     end
   end
 

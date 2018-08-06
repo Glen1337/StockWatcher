@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
 
+const HoldingRow = (props) => {
 
-class HoldingRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      new_value: null
-    }
-
-  }
-
-  render(){
+    let pl = props.currentPrice - props.costBasis
+    let plTotal = pl * props.quantity
 
     return (
     <tr>
-      <td>{this.props.ticker}</td>
-      <td>{this.props.quantity}</td>
-      <td>{this.props.costBasis}</td>
-      <td></td>
-      <td></td>
-      <td><button onClick={this.props.deleteHolding}>Delete</button></td>
+      <td>{props.ticker}</td>
+      <td>{props.quantity}</td>
+      <td>{props.costBasis}</td>
+      <td>{props.currentPrice}</td>
+      <td>{NumOutput(plTotal)}</td>
+      <td>{NumOutput(pl)}</td>
+      <td><button onClick={props.deleteHolding}>Delete</button></td>
     </tr>
     )
   }
-}
+
 
 export default HoldingRow;
