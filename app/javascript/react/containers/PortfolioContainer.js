@@ -34,15 +34,15 @@ class PortfolioContainer extends React.Component {
   }
 
   addPortfolio(newPortfolio){
-    fetch('/api/v1/portfolios/', {
+    fetch('/api/v1/portfolios/',{
       credentials: 'same-origin',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newPortfolio)
+      body: JSON.stringify(newPortfolio),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({questions: [...this.state.questions, responseData]})
+      this.setState({portfolios: [...this.state.portfolios, responseData]})
     })
   }
 

@@ -40,7 +40,7 @@ class PortfolioFormContainer extends React.Component{
           content={this.state.name}
           handleChange={this.handleChangeName}
         />
-        <input type= 'submit' value='Submit'/>
+        <input type= 'submit' value='Create'/>
       </form>
     );
   }
