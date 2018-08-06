@@ -24,3 +24,17 @@ var NumOutput = function(input){
   num = parseFloat(num).toLocaleString();
   return num;
 }
+
+// Prettify nubmers by adding commas for thousands and rounding if needed with sign in front
+var SignNumOutput = function(input, prepend = ''){
+  num = +input.toFixed(2);
+  num = parseFloat(num);
+
+  if (num > 0){
+    return `+${prepend}${num.toLocaleString()}`;
+  }else if (num < 0){
+    return `-${prepend}${Math.abs(num).toLocaleString()}`;
+  }else{
+    return '0';
+  }
+}

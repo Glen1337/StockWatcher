@@ -10,11 +10,10 @@ class Api::V1::PortfoliosController < ApplicationController
   def index
     if user_signed_in?
       portfolios = Portfolio.all.where(user_id: current_user.id)
-
-      up_to_date_portfolios = serialized_portfolios(portfolios)
+      # up_to_date_portfolios = serialized_portfolios(portfolios)
       render json:
       {
-        portfolios: up_to_date_portfolios
+        portfolios: serialized_portfolios(portfolios)
       }
     end
   end
@@ -23,7 +22,7 @@ class Api::V1::PortfoliosController < ApplicationController
     @port = Portfolio.new(portfolio_params)
     @port.user = current_user
     if @port.save
-      render json: { name: @port.name, id: @port.id }
+      render json: @port
     else
       render json: { error: @port.errors.full_messages }, status: :unprocessable_entity
     end
