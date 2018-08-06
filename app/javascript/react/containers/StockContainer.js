@@ -34,7 +34,6 @@ class StockContainer extends React.Component {
   }
 
   componentDidMount() {
-
   }
 
   render() {
@@ -49,7 +48,7 @@ class StockContainer extends React.Component {
             content={this.state.stockTicker}
             handleChange={this.handleStockTickerChange}
           />
-          <input type='submit' value='Submit'/>
+          <input type='submit' value='Get Info'/>
         </form>
       </div>
     )

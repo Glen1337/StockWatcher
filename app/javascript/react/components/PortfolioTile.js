@@ -71,12 +71,12 @@ class PortfolioTile extends Component {
     let formPayload = {
       holding_id: holdingId
     };
-    debugger;
+    
     fetch(`/api/v1/stock_holdings/${holdingId}`, {
       credentials: 'same-origin',
       method: 'DELETE',
       body: JSON.stringify(formPayload),
-      headers: { 'Content-Type': 'application/json' }
+      headers: {'Accept': 'application/json', 'Content-Type': 'application/json' }
     })
     .then(response => {
       if (response.ok) {
@@ -89,7 +89,6 @@ class PortfolioTile extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      debugger;
       this.setState({
       });
     })
