@@ -4,7 +4,6 @@ class Api::V1::StockHoldingsController < ApplicationController
   def index
     render json: StockHolding.all
     # stocks = StockHolding.all
-
   end
 
 end
