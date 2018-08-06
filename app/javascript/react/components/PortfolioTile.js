@@ -40,31 +40,60 @@ class PortfolioTile extends Component {
   }
 
   getCurrentValues(holdings){
-    let tickersToGet = holdings.map(holding => holding.ticker).join(',');
-    console.log("fetching IEX data for " + tickersToGet)
-    fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickersToGet}&types=quote`)
+    if (holdings.length > 0){
+      let tickersToGet = holdings.map(holding => holding.ticker).join(',');
+      console.log("fetching IEX data for " + tickersToGet)
+      fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickersToGet}&types=quote`)
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          current_prices: body
+        })
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+  }
+
+  deleteHolding(holdingId){
+    event.preventDefault();
+    let filteredArray = this.state.holdings.filter(holding => holding.id !== holdingId)
+    this.setState({holdings: filteredArray});
+
+    let formPayload = {
+      holding_id: holdingId
+    };
+    debugger;
+    fetch(`/api/v1/stock_holdings/${holdingId}`, {
+      credentials: 'same-origin',
+      method: 'DELETE',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
     .then(response => {
       if (response.ok) {
         return response;
       } else {
         let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
+            error = new Error(errorMessage);
         throw(error);
       }
     })
     .then(response => response.json())
     .then(body => {
+      debugger;
       this.setState({
-        current_prices: body
-      })
+      });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
-
-  deleteHolding(holdingId){
-    let filteredArray = this.state.holdings.filter(holding => holding.id !== holdingId)
-    this.setState({holdings: filteredArray});
-    // fetch to stock holding delete action method
   }
 
   render(){
@@ -88,20 +117,19 @@ class PortfolioTile extends Component {
         }
         return (
           <HoldingRow
-          currentPrice={currentPrice}
-          deleteHolding={handleDeleteHolding}
-          key={holding.id}
-          id={holding.id}
-          quantity={holding.quantity}
-          ticker={holding.ticker}
-          costBasis={holding.cost_basis}
+            currentPrice={currentPrice}
+            deleteHolding={handleDeleteHolding}
+            key={holding.id}
+            id={holding.id}
+            quantity={holding.quantity}
+            ticker={holding.ticker}
+            costBasis={holding.cost_basis}
           />
-        )
-      }, this)
+        )}, this)
 
     return (
     <div>
-      <h4>{this.state.name}&nbsp;&nbsp;
+      <h4><b><u>{this.state.name}</u></b>&nbsp;&nbsp;
         Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
         Original value: ${NumOutput(originalPortfolioValue)}</h4>
       <table>

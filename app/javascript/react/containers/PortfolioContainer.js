@@ -1,5 +1,7 @@
 import React from 'react';
 import PortfolioTile from '../components/PortfolioTile'
+import PortfolioFormContainer from './PortfolioFormContainer'
+
 
 class PortfolioContainer extends React.Component {
   constructor(props){
@@ -7,7 +9,7 @@ class PortfolioContainer extends React.Component {
     this.state = {
       portfolios: []
     }
-
+    this.addPortfolio = this.addPortfolio.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +33,19 @@ class PortfolioContainer extends React.Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  addPortfolio(newPortfolio){
+    fetch('/api/v1/portfolios/', {
+      credentials: 'same-origin',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newPortfolio)
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      this.setState({questions: [...this.state.questions, responseData]})
+    })
+  }
+
   render() {
     console.log("PortfolioContainer rendering")
 
@@ -47,6 +62,8 @@ class PortfolioContainer extends React.Component {
       <div>
         <h1>Portfolios</h1>
         {portfolios}
+        <h2>Create A New Portfolio</h2>
+        <PortfolioFormContainer addPortfolio={this.addPortfolio} />
       </div>
     )
   }

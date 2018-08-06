@@ -6,4 +6,9 @@ class Api::V1::StockHoldingsController < ApplicationController
     # stocks = StockHolding.all
   end
 
+  def destroy
+    binding.pry
+    StockHolding.find(params[:holding_id]).delete
+  end
+
 end
