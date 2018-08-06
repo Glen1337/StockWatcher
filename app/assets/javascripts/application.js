@@ -17,3 +17,10 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+// Prettify nubmers by adding commas for thousands and rounding if needed
+var NumOutput = function(input){
+  num = +input.toFixed(2);
+  num = parseFloat(num).toLocaleString();
+  return num;
+}
