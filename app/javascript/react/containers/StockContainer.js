@@ -5,8 +5,32 @@ class StockContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-
+      stockTicker: ''
     }
+    this.handleStockTickerChange = this.handleStockTickerChange.bind(this);
+    this.handleClearForm = this.handleClearForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleClearForm(event){
+    event.preventDefault();
+    this.setState({
+      stockTicker: ''
+    });
+  }
+
+  handleStockTickerChange(event) {
+    this.setState({stockTicker: event.target.value});
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+
+    let body = {
+      symbol: this.state.stockTicker
+    }
+    console.log("Getting stock data for: " + body.symbol)
+    this.handleClearForm(event);
   }
 
   componentDidMount() {
@@ -18,90 +42,18 @@ class StockContainer extends React.Component {
     return(
       <div>
         <h1>Research/Add a Stock</h1>
+        <form onSubmit={this.handleSubmit}>
+          <InputField
+            label='Stock Symbol'
+            name='ticker'
+            content={this.state.stockTicker}
+            handleChange={this.handleStockTickerChange}
+          />
+          <input type='submit' value='Submit'/>
+        </form>
       </div>
     )
   }
 }
 
 export default StockContainer;
-
-
-// import React, {Component} from 'react';
-// import InputField from '../components/InputField'
-//
-// class FormContainer extends Component{
-//   constructor(props){
-//     super(props);
-//
-//     this.state = {
-//       title: '',
-//       releaseYear: '',
-//       runtime: ''
-//     }
-//     this.handleTitleChange = this.handleTitleChange.bind(this);
-//     this.handleRuntimeChange = this.handleRuntimeChange.bind(this);
-//     this.handleReleaseYearChange = this.handleReleaseYearChange.bind(this);
-//     this.handleClearForm = this.handleClearForm.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-//
-//   handleClearForm(event){
-//     event.preventDefault();
-//     this.setState({
-//       title: '',
-//       releaseYear: '',
-//       runtime: ''
-//     });
-//   }
-//
-//   handleTitleChange(event) {
-//     this.setState({title: event.target.value});
-//   }
-//
-//   handleReleaseYearChange(event) {
-//     this.setState({releaseYear: event.target.value});
-//   }
-//
-//   handleRuntimeChange(event) {
-//     this.setState({runtime: event.target.value});
-//   }
-//
-//   handleSubmit(event){
-//     event.preventDefault();
-//     let body = {
-//       title: this.state.title,
-//       release_year: this.state.releaseYear,
-//       runtime:this.state.runtime
-//     }
-//     this.props.addNewMovie(body)
-//     this.handleClearForm(event);
-//   }
-//
-//   render(){
-//     return(
-//       <form onSubmit={this.handleSubmit}>
-//         <InputField
-//           label='Name'
-//           name='title'
-//           content={this.state.title}
-//           handleChange={this.handleTitleChange}
-//         />
-//         <InputField
-//           label='Release Year'
-//           name='releaseYear'
-//           content={this.state.releaseYear}
-//           handleChange={this.handleReleaseYearChange}
-//         />
-//         <InputField
-//           label='Runtime'
-//           name='runtime'
-//           content={this.state.runtime}
-//           handleChange={this.handleRuntimeChange}
-//         />
-//         <input type='submit' value='Submit'/>
-//       </form>
-//     )
-//   }
-// }
-
-//export default FormContainer;
