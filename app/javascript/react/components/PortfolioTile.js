@@ -123,6 +123,7 @@ class PortfolioTile extends Component {
             quantity={holding.quantity}
             ticker={holding.ticker}
             costBasis={holding.cost_basis}
+            note={holding.notes}
           />
         )}, this)
 
@@ -141,6 +142,7 @@ class PortfolioTile extends Component {
             <th> Profit/Loss </th>
             <th> Profit/Loss per share </th>
             <th> % Gain/Loss </th>
+            <th> Notes </th>
             <th> Remove </th>
           </tr>
         </thead>
