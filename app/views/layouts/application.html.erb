@@ -3,6 +3,8 @@
 <head>
   <title>StockWatcher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.anychart.com/releases/8.3.0/js/anychart-core.min.js" type="text/javascript"></script>
+  <script src="https://cdn.anychart.com/releases/8.3.0/js/anystock.min.js" type="text/javascript"></script>
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -22,7 +24,7 @@
       <ul class="right">
         <%- if current_user -%>
           <li><%= link_to 'Research', stock_path %></li>
-          <li><%= link_to 'Portfolio', portfolios_path %></li>
+          <li><%= link_to 'Portfolios', portfolios_path %></li>
           <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>

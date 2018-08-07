@@ -71,7 +71,7 @@ class PortfolioTile extends Component {
     let formPayload = {
       holding_id: holdingId
     };
-    
+
     fetch(`/api/v1/stock_holdings/${holdingId}`, {
       credentials: 'same-origin',
       method: 'DELETE',
@@ -123,6 +123,7 @@ class PortfolioTile extends Component {
             quantity={holding.quantity}
             ticker={holding.ticker}
             costBasis={holding.cost_basis}
+            note={holding.notes}
           />
         )}, this)
 
@@ -133,7 +134,17 @@ class PortfolioTile extends Component {
         Original value: ${NumOutput(originalPortfolioValue)}</h4>
       <table>
         <thead>
-          <tr><th> Stock </th><th> Quantity </th><th> Cost Basis </th><th> Current Value </th><th> Profit/Loss </th><th> Profit/Loss per share</th><th> Remove </th></tr>
+          <tr>
+            <th> Stock </th>
+            <th> Quantity </th>
+            <th> Cost Basis </th>
+            <th> Current Price </th>
+            <th> Profit/Loss </th>
+            <th> Profit/Loss per share </th>
+            <th> % Gain/Loss </th>
+            <th> Notes </th>
+            <th> Remove </th>
+          </tr>
         </thead>
         <tbody>
           {holdings}
