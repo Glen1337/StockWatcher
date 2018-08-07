@@ -23,7 +23,7 @@ const HoldingRow = (props) => {
 
     return (
       <tr>
-        <td>{props.ticker}</td>
+        <td><b>{props.ticker}</b></td>
         <td>{props.quantity}</td>
         <td>${props.costBasis}</td>
         <td>${props.currentPrice}</td>

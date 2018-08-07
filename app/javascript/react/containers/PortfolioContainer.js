@@ -40,10 +40,20 @@ class PortfolioContainer extends React.Component {
       body: JSON.stringify(newPortfolio),
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw(error);
+      }
+    })
     .then(response => response.json())
     .then(responseData => {
       this.setState({portfolios: [...this.state.portfolios, responseData]})
     })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
