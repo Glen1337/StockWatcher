@@ -85,29 +85,34 @@ class StockContainer extends React.Component {
 
       // Price plot
       let plot_1 = chart.plot(0);
+      plot_1.candlestick(mapping).name(this.state.stockTicker);
+
+      plot_1.yGrid().enabled(true);
+      // Change crosshair, grid, and x-axis labels for first plot
+      plot_1.crosshair().xStroke("#483d8b", 1.6, "round");
+      plot_1.crosshair().yStroke("#483d8b", 1.6, "round");
+
+      let xAxis = plot_1.xAxis();
+      xAxis.labels().position('right').anchor('left_center');
+      xAxis.minorLabels().position('right').anchor('left_center');
+      xAxis.background('#D2E5F6');
+      xAxis.height(40);
+      // Set the series type
 
       // Volume plot
       let plot_2 = chart.plot(1);
+      plot_2.column(volMapping).name('Volume');
 
-      // Change crosshair, grid, and x-axis labels for first plot
-      plot_1.yGrid().enabled(true);
-      plot_1.crosshair().xStroke("#A9A9A9", 1.5, "10 5", "round");
-      // chart.plot(0).yGrid().stroke({dash: "5 25"});
-      let xAxis = chart.plot(0).xAxis();
-      xAxis.labels().position('right').anchor('left_center');
-      xAxis.minorLabels().position('right').anchor('left_center');
-      xAxis.background('#ADD8E6');
-      xAxis.height(40);
-
+      plot_2.yMinorGrid().palette(["LightGrey", null]);
       // Set series type for volume chart
-      chart.plot(1).column(volMapping).name('Volume');
+      plot_2.crosshair().xStroke("#483d8b", 1.6, "round");
+      plot_2.crosshair().yStroke("#483d8b", 1.6, "round");
 
-      // Set the series type
-      chart.plot(0).candlestick(mapping).name(this.state.stockTicker);
       // let grouping = chart.grouping();
       // grouping.minPixPerPoint(1);
       // Chart title
       // state and prevState not working here
+      // Draw whole chart
       chart.title(this.state.stockTicker);
       // chart.title(prevState.stockTicker);
       chart.container('container');
