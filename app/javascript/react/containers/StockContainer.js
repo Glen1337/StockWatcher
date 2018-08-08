@@ -59,6 +59,10 @@ class StockContainer extends React.Component {
     var table, mapping, chart;
 
     if (this.state.currentPrices.length > 1 && this.state.show){
+      debugger;
+      this.refs.myInput.innerHTML = '';
+      // node = this.myRef.current
+      debugger;
       table = anychart.data.table();
       table.addData(this.state.currentPrices);
 
@@ -104,7 +108,7 @@ class StockContainer extends React.Component {
           />
           <input type='submit' value='Get Info'/>
         </form>
-        <div id="container" style={divStyle}></div>
+        <div id="container" ref="myInput" style={divStyle}></div>
       </div>
     )
   }
