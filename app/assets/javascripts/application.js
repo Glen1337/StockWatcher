@@ -38,3 +38,14 @@ var SignNumOutput = function(input, prepend = ''){
     return '0';
   }
 }
+
+$(function(){
+      var flashDurationInSeconds = 10;
+      var flashContainerId = 'flash-messages';
+
+      function removeFlashMessages() {
+        $('#' + flashContainerId).remove();
+      }
+
+      setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
+    })

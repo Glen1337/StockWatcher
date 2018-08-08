@@ -19,6 +19,7 @@ class StockContainer extends React.Component {
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDataForStockChart = this.getDataForStockChart.bind(this);
+    this.handleNewStockData = this.handleNewStockData.bind(this)
   }
 
   handleClearForm(event){
@@ -31,7 +32,6 @@ class StockContainer extends React.Component {
   }
 
   getDataForStockChart(event){
-    let arrayOfArrays = []
     fetch(`https://api.iextrading.com/1.0/stock/${this.state.stockTicker}/chart/3m`)
     .then(response => {
       if (response.ok) {
@@ -43,23 +43,22 @@ class StockContainer extends React.Component {
       }
     })
     .then(response => response.json())
-    .then(body => {
-      body.forEach(obj => {
-        arrayOfArrays.push([obj["date"], obj["open"], obj["high"], obj["low"], obj["close"],obj["volume"]]);
-      });
-      debugger;
-      this.setState({
-        // state undefined here
-        stockTicker: this.state.stockTicker,
-        show: true,
-        currentPrices: arrayOfArrays
-      });
-    })
+    .then(this.handleNewStockData)
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  componentDidUpdate(prevProps, prevState){
+  handleNewStockData(body) {
+    let arrayOfArrays = []
+    body.forEach(obj => {
+      arrayOfArrays.push([obj["date"], obj["open"], obj["high"], obj["low"], obj["close"],obj["volume"]]);
+    });
+    this.setState({
+      show: true,
+      currentPrices: arrayOfArrays
+    });
+  }
 
+  componentDidUpdate(prevProps, prevState){
 
     if (this.state.currentPrices.length > 1 && this.state.show){
       let table, mapping, chart;
@@ -93,7 +92,7 @@ class StockContainer extends React.Component {
       // Change crosshair, grid, and x-axis labels for first plot
       plot_1.yGrid().enabled(true);
       plot_1.crosshair().xStroke("#A9A9A9", 1.5, "10 5", "round");
-      chart.plot(0).yGrid().stroke({dash: "5 25"});
+      // chart.plot(0).yGrid().stroke({dash: "5 25"});
       let xAxis = chart.plot(0).xAxis();
       xAxis.labels().position('right').anchor('left_center');
       xAxis.minorLabels().position('right').anchor('left_center');
@@ -104,14 +103,13 @@ class StockContainer extends React.Component {
       chart.plot(1).column(volMapping).name('Volume');
 
       // Set the series type
-      chart.plot(0).candlestick(mapping).name('Company');
+      chart.plot(0).candlestick(mapping).name(this.state.stockTicker);
       // let grouping = chart.grouping();
       // grouping.minPixPerPoint(1);
-      debugger;
       // Chart title
       // state and prevState not working here
       chart.title(this.state.stockTicker);
-      chart.title(prevState.stockTicker);
+      // chart.title(prevState.stockTicker);
       chart.container('container');
 
       chart.draw();
@@ -125,7 +123,7 @@ class StockContainer extends React.Component {
   handleSubmit(event){
     event.preventDefault();
     this.getDataForStockChart();
-    this.handleClearForm(event);
+    // this.handleClearForm(event);
   }
 
   render() {
