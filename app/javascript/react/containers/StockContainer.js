@@ -128,6 +128,7 @@ class StockContainer extends React.Component {
   //   if (this.state.show)
   // }
 
+  // When 'get info' btn is clicked
   handleStockTickerChange(submission) {
     this.setState({stockTicker: submission.ticker});
     this.getDataForStockChart(submission.ticker);
@@ -149,6 +150,7 @@ class StockContainer extends React.Component {
         <LogoTile
           ticker={this.state.stockTicker}
         />
+        <FundamentalsPanel />
         <div id="container" ref="myInput" style={divStyle}>Chart</div>
       </div>
     )
