@@ -96,7 +96,8 @@ class PortfolioTile extends Component {
   }
 
   render(){
-    console.log("ProfileTile rendering");
+    debugger;
+    console.log("PortfolioTile rendering");
 
       let currentPortfolioValue = 0;
       let originalPortfolioValue = 0;
@@ -124,6 +125,7 @@ class PortfolioTile extends Component {
             ticker={holding.ticker}
             costBasis={holding.cost_basis}
             note={holding.notes}
+            createdAt={holding.date}
           />
         )}, this)
 
@@ -143,6 +145,7 @@ class PortfolioTile extends Component {
             <th> Profit/Loss per share </th>
             <th> % Gain/Loss </th>
             <th> Notes </th>
+            <th> Bought on </th>
             <th> Remove </th>
           </tr>
         </thead>
