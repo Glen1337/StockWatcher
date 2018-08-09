@@ -1,5 +1,6 @@
 import React from 'react';
 import InputField from '../components/InputField'
+import LogoTile from '../components/LogoTile'
 
 const divStyle = {
   // width: '100%',
@@ -59,7 +60,6 @@ class StockContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-
     if (this.state.currentPrices.length > 1 && this.state.show){
       let table, mapping, chart;
       // Clear container div
@@ -82,6 +82,7 @@ class StockContainer extends React.Component {
 
       // Mapping for volume data
       let volMapping = table.mapAs({'value': 5});
+      let mfiMapping = table.mapAs({'high': 2, 'low': 3, 'close': 4, 'volume': 5});
 
       // Price plot
       let plot_1 = chart.plot(0);
@@ -97,7 +98,7 @@ class StockContainer extends React.Component {
       xAxis.minorLabels().position('right').anchor('left_center');
       xAxis.background('#D2E5F6');
       xAxis.height(40);
-      // Set the series type
+
 
       // Volume plot
       let plot_2 = chart.plot(1);
@@ -107,6 +108,18 @@ class StockContainer extends React.Component {
       // Set series type for volume chart
       plot_2.crosshair().xStroke("#483d8b", 1.6, "round");
       plot_2.crosshair().yStroke("#483d8b", 1.6, "round");
+
+      // MFI plot
+      let plot_3 = chart.plot(2);
+      let mfiIndicator = plot_3.mfi(mfiMapping).series()
+      mfiIndicator.stroke("2 red");
+
+      // MACD plot
+      let plot_4 = chart.plot(3)
+      let macdIndicator = plot_4.macd(mapping, 12, 26, 9);
+      macdIndicator.macdSeries().stroke('#bf360c');
+      macdIndicator.signalSeries().stroke('#ff6d00');
+      macdIndicator.histogramSeries().fill('#ffe082');
 
       // let grouping = chart.grouping();
       // grouping.minPixPerPoint(1);
@@ -132,6 +145,7 @@ class StockContainer extends React.Component {
   }
 
   render() {
+    debugger;
     return(
       <div>
         <h1>Research/Add a Stock</h1>
@@ -144,7 +158,9 @@ class StockContainer extends React.Component {
           />
           <input type='submit' value='Get Info'/>
         </form>
-        <div id="container" ref="myInput" style={divStyle}></div>
+        <LogoTile ticker={this.state.stockTicker}/>
+        <div id="container" ref="myInput" style={divStyle}>Chart</div>
+
       </div>
     )
   }
