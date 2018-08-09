@@ -4,8 +4,9 @@ import LogoTile from '../components/LogoTile'
 import StockFormContainer from './StockFormContainer'
 
 const divStyle = {
-  // width: '100%',
+  // width: '100%'
   // height: '100%'
+  // background-color: 'red'
 };
 
 class StockContainer extends React.Component {
@@ -23,7 +24,7 @@ class StockContainer extends React.Component {
   }
 
   getDataForStockChart(ticker){
-    fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/1y`)
+    fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/3m`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -76,7 +77,15 @@ class StockContainer extends React.Component {
 
       // Price plot
       let plot_1 = chart.plot(0);
-      plot_1.candlestick(mapping).name(this.state.stockTicker);
+      let candleSeries = plot_1.candlestick(mapping);
+      candleSeries.name(this.state.stockTicker);
+
+      // Change color of candlesticks
+      candleSeries.risingFill("#60C03F");
+      candleSeries.fallingFill("#CB2113");
+      candleSeries.risingStroke("#115C09");
+      candleSeries.fallingStroke("#7F0004");
+
 
       plot_1.yGrid().enabled(true);
       // Change crosshair, grid, and x-axis labels for first plot
@@ -128,6 +137,7 @@ class StockContainer extends React.Component {
   //   if (this.state.show)
   // }
 
+  // When 'get info' btn is clicked
   handleStockTickerChange(submission) {
     this.setState({stockTicker: submission.ticker});
     this.getDataForStockChart(submission.ticker);

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :stock_holdings, only: [:destroy, :create]
-      resources :portfolios, only: [:index, :show, :create]
+      resources :portfolios, only: [:index, :show, :create, :destroy]
     end
   end
 

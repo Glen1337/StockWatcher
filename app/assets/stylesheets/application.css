@@ -14,8 +14,4 @@
  *= require_self
  *= require foundation_and_overrides
  *= require stock_watcher
- #container{
-  height: 100%;
-  width: 100%;
-}
  */

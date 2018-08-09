@@ -31,6 +31,7 @@ const HoldingRow = (props) => {
         <td>{SignNumOutput(pl, '$')}</td>
         <td>{SignNumOutput(((props.currentPrice - props.costBasis)/props.costBasis) * 100)}%</td>
         <td>{props.note}</td>
+        <td>{props.createdAt}</td>
         <td><button onClick={props.deleteHolding}>Delete</button></td>
       </tr>
     )

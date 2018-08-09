@@ -10,6 +10,8 @@ class PortfolioContainer extends React.Component {
       portfolios: []
     }
     this.addPortfolio = this.addPortfolio.bind(this);
+    this.deletePortfolio = this.deletePortfolio.bind(this);
+
   }
 
   componentDidMount() {
@@ -29,6 +31,32 @@ class PortfolioContainer extends React.Component {
       this.setState({
         portfolios: body.portfolios
       })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  deletePortfolio(portfolioId){
+    let payLoad = {id: portfolioId}
+    debugger;
+    fetch(`/api/v1/portfolios/${portfolioId}`,{
+      credentials: 'same-origin',
+      method: 'DELETE',
+      body: JSON.stringify(payLoad),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      debugger;
+      this.setState({portfolios: responseData.portfolios})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -58,13 +86,17 @@ class PortfolioContainer extends React.Component {
 
   render() {
     console.log("PortfolioContainer rendering")
-
+    debugger;
     let portfolios = this.state.portfolios.map((portfolio) => {
+
+      let handleDeleteClick = () => { this.deletePortfolio(portfolio.id) }
+
       return (
         <PortfolioTile
           key={portfolio.id}
           id={portfolio.id}
           name={portfolio.name}
+          deleteClick={handleDeleteClick}
         />
       )
     })
