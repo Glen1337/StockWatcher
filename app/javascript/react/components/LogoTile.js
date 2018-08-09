@@ -7,13 +7,11 @@ class LogoTile extends React.Component {
       ticker: '',
       stockUrl: ''
     }
-
   }
 
-  componentDidMount() {
-    debugger;
-    if (this.state.ticker){
-      fetch(`https://api.iextrading.com/1.0/stock/${this.state.ticker}/logo`)
+  componentWillReceiveProps(nextProps) {
+    if (this.props.ticker){
+      fetch(`https://api.iextrading.com/1.0/stock/${this.props.ticker}/logo`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -25,20 +23,20 @@ class LogoTile extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        debugger;
-        this.setState({
-          ticker: body
-        })
+        this.setState({stockUrl: body.url});
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
   }
 
   render(){
-    debugger;
+    let imgElement = null;
+    if (this.state.stockUrl){
+      imgElement = <img src={this.state.stockUrl} alt={this.state.ticker.concat(" logo")}/>
+    }
     return(
       <div>
-        <img src={this.state.stockUrl} alt={this.state.ticker.concat(" logo")}/>
+        {imgElement}
       </div>
     )
   }

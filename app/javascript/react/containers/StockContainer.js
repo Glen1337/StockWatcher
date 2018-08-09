@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from '../components/InputField'
 import LogoTile from '../components/LogoTile'
+import StockFormContainer from './StockFormContainer'
 
 const divStyle = {
   // width: '100%',
@@ -8,7 +9,6 @@ const divStyle = {
 };
 
 class StockContainer extends React.Component {
-
   constructor(props){
     super(props)
     this.state = {
@@ -17,23 +17,13 @@ class StockContainer extends React.Component {
       show: false
     }
     this.handleStockTickerChange = this.handleStockTickerChange.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.getDataForStockChart = this.getDataForStockChart.bind(this);
     this.handleNewStockData = this.handleNewStockData.bind(this)
   }
 
-  handleClearForm(event){
-    // event.preventDefault();
-    this.setState({ stockTicker: '' });
-  }
-
-  handleStockTickerChange(event) {
-    this.setState({stockTicker: event.target.value});
-  }
-
-  getDataForStockChart(event){
-    fetch(`https://api.iextrading.com/1.0/stock/${this.state.stockTicker}/chart/3m`)
+  getDataForStockChart(ticker){
+    fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/1y`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -93,11 +83,11 @@ class StockContainer extends React.Component {
       plot_1.crosshair().xStroke("#483d8b", 1.6, "round");
       plot_1.crosshair().yStroke("#483d8b", 1.6, "round");
 
-      let xAxis = plot_1.xAxis();
-      xAxis.labels().position('right').anchor('left_center');
-      xAxis.minorLabels().position('right').anchor('left_center');
-      xAxis.background('#D2E5F6');
-      xAxis.height(40);
+      // let xAxis = plot_1.xAxis();
+      // xAxis.labels().position('right').anchor('left_center');
+      // xAxis.minorLabels().position('right').anchor('left_center');
+      // xAxis.background('#D2E5F6');
+      // xAxis.height(40);
 
 
       // Volume plot
@@ -138,29 +128,28 @@ class StockContainer extends React.Component {
   //   if (this.state.show)
   // }
 
-  handleSubmit(event){
-    event.preventDefault();
-    this.getDataForStockChart();
-    // this.handleClearForm(event);
+  handleStockTickerChange(submission) {
+    this.setState({stockTicker: submission.ticker});
+    this.getDataForStockChart(submission.ticker);
   }
 
+  // handleSubmit(event){
+  //   event.preventDefault();
+  //   this.getDataForStockChart();
+  //   // this.handleClearForm(event);
+  // }
+
   render() {
-    debugger;
     return(
       <div>
         <h1>Research/Add a Stock</h1>
-        <form onSubmit={this.handleSubmit}>
-          <InputField
-            label='Stock Symbol'
-            name='ticker'
-            content={this.state.stockTicker}
-            handleChange={this.handleStockTickerChange}
-          />
-          <input type='submit' value='Get Info'/>
-        </form>
-        <LogoTile ticker={this.state.stockTicker}/>
+        <StockFormContainer
+          changeTicker={this.handleStockTickerChange}
+        />
+        <LogoTile
+          ticker={this.state.stockTicker}
+        />
         <div id="container" ref="myInput" style={divStyle}>Chart</div>
-
       </div>
     )
   }
