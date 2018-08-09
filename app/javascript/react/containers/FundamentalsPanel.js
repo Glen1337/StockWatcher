@@ -1,19 +1,18 @@
 import React from 'react';
 
-class LogoTile extends React.Component {
+class FundamentalsPanel extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       ticker: '',
-      stockUrl: ''
+      stats: ''
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (this.props.ticker){
     if (this.props.ticker !== nextProps.ticker){
-      console.log("logo tile fetch")
-      fetch(`https://api.iextrading.com/1.0/stock/${nextProps.ticker}/logo`)
+      console.log("fund. panel fetch");
+      fetch(`https://api.iextrading.com/1.0/stock/${nextProps.ticker}/stats`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -25,23 +24,25 @@ class LogoTile extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({stockUrl: body.url});
+        this.setState({stats: body});
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
   }
 
-  render(){
-    let imgElement = null;
-    if (this.state.stockUrl){
-      imgElement = <img src={this.state.stockUrl} alt={this.state.ticker.concat(" logo")}/>
-    }
+  render() {
+    // debugger;
+    // for (var key in this.state.stats) {
+    //   console.log(key, stats[key]);
+    // }
+     console.log(this.state.stats)
+
     return(
       <div>
-        {imgElement}
+        <h2>Fundamentals</h2>
       </div>
     )
   }
 }
 
-export default LogoTile;
+export default FundamentalsPanel;

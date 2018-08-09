@@ -2,6 +2,7 @@ import React from 'react';
 import InputField from '../components/InputField'
 import LogoTile from '../components/LogoTile'
 import StockFormContainer from './StockFormContainer'
+import FundamentalsPanel from './FundamentalsPanel'
 
 const divStyle = {
   // width: '100%'
@@ -159,7 +160,11 @@ class StockContainer extends React.Component {
         <LogoTile
           ticker={this.state.stockTicker}
         />
-        <div id="container" ref="myInput" style={divStyle}>Chart</div>
+        <FundamentalsPanel
+          ticker={this.state.stockTicker}
+        />
+        <h2>Charts</h2>
+        <div id="container" ref="myInput" style={divStyle}></div>
       </div>
     )
   }
