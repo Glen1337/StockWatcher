@@ -96,7 +96,6 @@ class PortfolioTile extends Component {
   }
 
   render(){
-    debugger;
     console.log("PortfolioTile rendering");
 
       let currentPortfolioValue = 0;
@@ -134,6 +133,7 @@ class PortfolioTile extends Component {
       <h4><b><u>{this.state.name}</u></b>&nbsp;&nbsp;
         Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
         Original value: ${NumOutput(originalPortfolioValue)}</h4>
+        <button onClick={this.props.deleteClick}>Delete Portfolio</button>
       <table>
         <thead>
           <tr>

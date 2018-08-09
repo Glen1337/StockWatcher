@@ -18,7 +18,7 @@ port5 = Portfolio.create!(name: "Finance", stock_holdings: [], user: user2)
 
 stock1 = StockHolding.create!(ticker: "INTC", cost_basis: 48, quantity: 1000, portfolio: port4)
 stock2 = StockHolding.create!(ticker: "FEYE", cost_basis: 72.643, quantity: 32.6, portfolio: port2)
-stock3 = StockHolding.create!(ticker: "PANW", cost_basis: 90.32, quantity: 70.0, portfolio: port2, "cyber sec. industry booming")
+stock3 = StockHolding.create!(ticker: "PANW", cost_basis: 90.32, quantity: 70.0, portfolio: port2, notes: "cyber sec. industry booming")
 stock4 = StockHolding.create!(ticker: "STX", cost_basis: 47, quantity: 150, portfolio: port4)
 stock5 = StockHolding.create!(ticker: "CRUS", cost_basis: 91, quantity: 300, portfolio: port4)
 stock6 = StockHolding.create!(ticker: "NEE", cost_basis: 32, quantity: 5, portfolio: port1)
