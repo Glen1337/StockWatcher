@@ -19,7 +19,7 @@ class Api::V1::StockHoldingsController < ApplicationController
     if user_signed_in?
       p = stock_holding_params
       @holding = StockHolding.new(stock_holding_params)
-      @holding.portfolio = Portfolio.find_by(name: params[:portfolio])
+      @holding.portfolio = Portfolio.find_by(name: params[:portfolio], user_id: current_user.id )
       if @holding.save
         render json: @holding
       else

@@ -50,7 +50,6 @@ class BuyStockForm extends Component {
       quantity: this.state.quantity,
       portfolio: this.state.portfolio
     };
-    // bubble up passed-in handler
     this.props.buyStock(formPayload);
     this.handleClearForm(event);
   }
