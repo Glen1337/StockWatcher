@@ -69,15 +69,24 @@ class PortfolioContainer extends React.Component {
     .then(response => {
       if (response.ok) {
         return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
+      } else if (response.status == 422){
+        return response;
+      }else{
+          let errorMessage = `${response.status} (${response.statusText})`,
           error = new Error(errorMessage);
-        throw(error);
+          throw(error);
       }
     })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({portfolios: [...this.state.portfolios, responseData]})
+      debugger;
+      if (responseData.error) {
+        debugger;
+        // set the errors in state
+      } else {
+        debugger;
+        this.setState({portfolios: [...this.state.portfolios, responseData]})
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

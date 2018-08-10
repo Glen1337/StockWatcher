@@ -1,4 +1,4 @@
-
+import BackButton from '../components/BackButton'
 import React from 'react';
 import PortfolioTile from '../components/PortfolioTile'
 
@@ -14,6 +14,7 @@ class Landing extends React.Component {
 
     return(
       <div>
+        <BackButton />
         <h1>Welcome to StockWatcher</h1>
       </div>
     )

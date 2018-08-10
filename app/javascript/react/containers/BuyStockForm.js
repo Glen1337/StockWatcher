@@ -83,10 +83,10 @@ class BuyStockForm extends Component {
             content={this.state.notes}
             handleChange={this.handleNotesChange}
           />
-          <label>'Quantity'
+          <label>Quantity
             <input
-            type='text'
-            name='number'
+            type='number'
+            name='quantity'
             value={this.state.quantity}
             onChange={this.handleQuantityChange}
             />
