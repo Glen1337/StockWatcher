@@ -2,8 +2,9 @@ import React from 'react';
 import InputField from '../components/InputField'
 import LogoTile from '../components/LogoTile'
 import StockFormContainer from './StockFormContainer'
-import FundamentalsPanel from './FundamentalsPanel'
+import StatisticsPanel from './StatisticsPanel'
 import BuyStockForm from './BuyStockForm'
+import BackButton from '../components/BackButton'
 
 
 const divStyle = {
@@ -144,14 +145,12 @@ class StockContainer extends React.Component {
 
   // When 'get info' btn is clicked
   handleStockTickerChange(submission) {
-    debugger;
     this.setState({stockTicker: submission.ticker});
     this.getDataForStockChart(submission.ticker);
   }
 
   handleBuyStock(purchase){
     //cost: this.state.currentPrices[this.state.currentPrices.length - 1],
-    debugger;
     fetch(`https://api.iextrading.com/1.0/stock/${this.state.stockTicker}/quote`)
     .then(response => {
       if (response.ok) {
@@ -166,6 +165,7 @@ class StockContainer extends React.Component {
     .then(body => {
 
       let payLoad = {
+        notes: purchase.notes,
         quantity: purchase.quantity,
         portfolio: purchase.portfolio,
         ticker: this.state.stockTicker,
@@ -180,10 +180,8 @@ class StockContainer extends React.Component {
         })
         .then(response => {
           if (response.ok) {
-            debugger;
             return response;
           } else {
-            debugger;
             let errorMessage = `${response.status} (${response.statusText})`,
               error = new Error(errorMessage);
             throw(error);
@@ -202,24 +200,30 @@ class StockContainer extends React.Component {
   // }
 
   render() {
+    let chartsTitle;
+    if (this.state.stockTicker){
+      chartsTitle = <h2>Charts</h2>
+    }
     return(
       <div>
         <h1>Research/Add a Stock</h1>
         <StockFormContainer
           changeTicker={this.handleStockTickerChange}
         />
+        <hr /><br />
         <LogoTile
           ticker={this.state.stockTicker}
         />
+        <br />
+        <StatisticsPanel
+          ticker={this.state.stockTicker}
+        />
+        {chartsTitle}
+        <div id="container" ref="myInput" style={divStyle}></div>
         <BuyStockForm
           buyStock={this.handleBuyStock}
         />
-        <FundamentalsPanel
-          ticker={this.state.stockTicker}
-        />
-        <h2>Charts</h2>
-        <div id="container" ref="myInput" style={divStyle}></div>
-
+        <br />
       </div>
     )
   }

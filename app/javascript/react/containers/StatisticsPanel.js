@@ -1,7 +1,7 @@
 import React from 'react';
 import Statistic from '../components/Statistic'
 
-class FundamentalsPanel extends React.Component {
+class StatisticsPanel extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -32,6 +32,7 @@ class FundamentalsPanel extends React.Component {
   }
 
   render() {
+    let title;
     let statsList = [];
     let count = 0;
     for (const [key, value] of Object.entries(this.state.stats)) {
@@ -48,13 +49,14 @@ class FundamentalsPanel extends React.Component {
         />
       );
     }
+    if (statsList.length > 0) {title = <h2>Statistics</h2>}
     return(
       <div>
-        <h2>Fundamentals</h2>
+        {title}
         {statsList}
       </div>
     )
   }
 }
 
-export default FundamentalsPanel;
+export default StatisticsPanel;

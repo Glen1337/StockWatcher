@@ -1,6 +1,7 @@
 import React from 'react';
 import PortfolioTile from '../components/PortfolioTile'
 import PortfolioFormContainer from './PortfolioFormContainer'
+import BackButton from '../components/BackButton'
 
 
 class PortfolioContainer extends React.Component {
@@ -36,7 +37,6 @@ class PortfolioContainer extends React.Component {
 
   deletePortfolio(portfolioId){
     let payLoad = {id: portfolioId}
-    debugger;
     fetch(`/api/v1/portfolios/${portfolioId}`,{
       credentials: 'same-origin',
       method: 'DELETE',
@@ -54,7 +54,6 @@ class PortfolioContainer extends React.Component {
     })
     .then(response => response.json())
     .then(responseData => {
-      debugger;
       this.setState({portfolios: responseData.portfolios})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -84,7 +83,7 @@ class PortfolioContainer extends React.Component {
   }
 
   render() {
-    debugger;
+    console.log("portfolio render")
     let portfolios = this.state.portfolios.map((portfolio) => {
 
       let handleDeleteClick = () => { this.deletePortfolio(portfolio.id) }
@@ -100,6 +99,7 @@ class PortfolioContainer extends React.Component {
     })
     return(
       <div>
+        <BackButton />
         <h1>Portfolios</h1>
         {portfolios}
         <h2>Create A New Portfolio</h2>

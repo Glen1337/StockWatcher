@@ -15,7 +15,6 @@ class Api::V1::StockHoldingsController < ApplicationController
   end
 
   def create
-    binding.pry
     if user_signed_in?
       p = stock_holding_params
       @holding = StockHolding.new(stock_holding_params)
@@ -31,5 +30,5 @@ class Api::V1::StockHoldingsController < ApplicationController
 end
 
 def stock_holding_params
-  params.require(:stock_holding).permit(:ticker, :quantity, :cost_basis)
+  params.require(:stock_holding).permit(:ticker, :quantity, :cost_basis, :notes)
 end
