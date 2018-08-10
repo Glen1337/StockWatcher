@@ -15,7 +15,6 @@ class Api::V1::StockHoldingsController < ApplicationController
   end
 
   def create
-    binding.pry
     if user_signed_in?
       p = stock_holding_params
       @holding = StockHolding.new(stock_holding_params)

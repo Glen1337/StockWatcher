@@ -36,7 +36,6 @@ class PortfolioContainer extends React.Component {
 
   deletePortfolio(portfolioId){
     let payLoad = {id: portfolioId}
-    debugger;
     fetch(`/api/v1/portfolios/${portfolioId}`,{
       credentials: 'same-origin',
       method: 'DELETE',
@@ -54,7 +53,6 @@ class PortfolioContainer extends React.Component {
     })
     .then(response => response.json())
     .then(responseData => {
-      debugger;
       this.setState({portfolios: responseData.portfolios})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -84,7 +82,6 @@ class PortfolioContainer extends React.Component {
   }
 
   render() {
-    debugger;
     let portfolios = this.state.portfolios.map((portfolio) => {
 
       let handleDeleteClick = () => { this.deletePortfolio(portfolio.id) }

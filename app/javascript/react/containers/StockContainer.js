@@ -144,14 +144,12 @@ class StockContainer extends React.Component {
 
   // When 'get info' btn is clicked
   handleStockTickerChange(submission) {
-    debugger;
     this.setState({stockTicker: submission.ticker});
     this.getDataForStockChart(submission.ticker);
   }
 
   handleBuyStock(purchase){
     //cost: this.state.currentPrices[this.state.currentPrices.length - 1],
-    debugger;
     fetch(`https://api.iextrading.com/1.0/stock/${this.state.stockTicker}/quote`)
     .then(response => {
       if (response.ok) {
@@ -180,7 +178,6 @@ class StockContainer extends React.Component {
         })
         .then(response => {
           if (response.ok) {
-            debugger;
             return response;
           } else {
             debugger;
