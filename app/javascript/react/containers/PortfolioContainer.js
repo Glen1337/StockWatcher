@@ -83,6 +83,7 @@ class PortfolioContainer extends React.Component {
   }
 
   render() {
+    console.log("portfolio render")
     let portfolios = this.state.portfolios.map((portfolio) => {
 
       let handleDeleteClick = () => { this.deletePortfolio(portfolio.id) }

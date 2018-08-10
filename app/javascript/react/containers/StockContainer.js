@@ -206,7 +206,6 @@ class StockContainer extends React.Component {
     }
     return(
       <div>
-        <BackButton />
         <h1>Research/Add a Stock</h1>
         <StockFormContainer
           changeTicker={this.handleStockTickerChange}

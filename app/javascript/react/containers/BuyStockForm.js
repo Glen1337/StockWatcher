@@ -51,6 +51,7 @@ class BuyStockForm extends Component {
     };
     this.props.buyStock(formPayload);
     this.handleClearForm(event);
+    window.scrollTo(0, 0);
   }
 
   handlePortfolioChange(event) {
