@@ -15,7 +15,6 @@ class PortfolioContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log("PortfolioContainer mounting")
     fetch(`/api/v1/portfolios`, {credentials: 'same-origin'})
     .then(response => {
       if (response.ok) {
@@ -85,7 +84,6 @@ class PortfolioContainer extends React.Component {
   }
 
   render() {
-    console.log("PortfolioContainer rendering")
     debugger;
     let portfolios = this.state.portfolios.map((portfolio) => {
 

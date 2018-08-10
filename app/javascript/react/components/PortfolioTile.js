@@ -15,7 +15,6 @@ class PortfolioTile extends Component {
   }
 
   componentDidMount() {
-    console.log("ProlfileTile mounting")
     fetch(`/api/v1/portfolios/${this.props.id}`, {credentials: 'same-origin'})
     .then(response => {
       if (response.ok) {
@@ -42,7 +41,7 @@ class PortfolioTile extends Component {
   getCurrentValues(holdings){
     if (holdings.length > 0){
       let tickersToGet = holdings.map(holding => holding.ticker).join(',');
-      console.log("fetching IEX data for " + tickersToGet)
+      console.log("fetching IEX data for Portfolio: " + tickersToGet)
       fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickersToGet}&types=quote`)
       .then(response => {
         if (response.ok) {
@@ -96,8 +95,6 @@ class PortfolioTile extends Component {
   }
 
   render(){
-    console.log("PortfolioTile rendering");
-
       let currentPortfolioValue = 0;
       let originalPortfolioValue = 0;
 
@@ -132,8 +129,8 @@ class PortfolioTile extends Component {
     <div>
       <h4><b><u>{this.state.name}</u></b>&nbsp;&nbsp;
         Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
-        Original value: ${NumOutput(originalPortfolioValue)}</h4>
-        <button onClick={this.props.deleteClick}>Delete Portfolio</button>
+        Original value: ${NumOutput(originalPortfolioValue)}&nbsp;&nbsp;
+        <button onClick={this.props.deleteClick}>Delete Portfolio</button></h4>
       <table>
         <thead>
           <tr>
