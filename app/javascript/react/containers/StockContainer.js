@@ -180,7 +180,6 @@ class StockContainer extends React.Component {
           if (response.ok) {
             return response;
           } else {
-            debugger;
             let errorMessage = `${response.status} (${response.statusText})`,
               error = new Error(errorMessage);
             throw(error);
@@ -199,6 +198,10 @@ class StockContainer extends React.Component {
   // }
 
   render() {
+    let chartsTitle;
+    if (this.state.stockTicker){
+      chartsTitle = <h2>Charts</h2>
+    }
     return(
       <div>
         <h1>Research/Add a Stock</h1>
@@ -214,7 +217,7 @@ class StockContainer extends React.Component {
         <FundamentalsPanel
           ticker={this.state.stockTicker}
         />
-        <h2>Charts</h2>
+        {chartsTitle}
         <div id="container" ref="myInput" style={divStyle}></div>
 
       </div>
