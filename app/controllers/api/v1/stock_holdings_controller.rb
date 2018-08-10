@@ -14,4 +14,22 @@ class Api::V1::StockHoldingsController < ApplicationController
     render json: { deleted: stock.ticker }
   end
 
+  def create
+    binding.pry
+    if user_signed_in?
+      p = stock_holding_params
+      @holding = StockHolding.new(stock_holding_params)
+      @holding.portfolio = Portfolio.find_by(name: params[:portfolio])
+      if @holding.save
+        render json: @holding
+      else
+        render json: { error: @holding.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+  end
+
+end
+
+def stock_holding_params
+  params.require(:stock_holding).permit(:ticker, :quantity, :cost_basis)
 end

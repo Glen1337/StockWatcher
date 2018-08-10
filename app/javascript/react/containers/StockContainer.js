@@ -3,6 +3,8 @@ import InputField from '../components/InputField'
 import LogoTile from '../components/LogoTile'
 import StockFormContainer from './StockFormContainer'
 import FundamentalsPanel from './FundamentalsPanel'
+import BuyStockForm from './BuyStockForm'
+
 
 const divStyle = {
   // width: '100%'
@@ -18,6 +20,7 @@ class StockContainer extends React.Component {
       currentPrices: [],
       show: false
     }
+    this.handleBuyStock= this.handleBuyStock.bind(this);
     this.handleStockTickerChange = this.handleStockTickerChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.getDataForStockChart = this.getDataForStockChart.bind(this);
@@ -141,8 +144,55 @@ class StockContainer extends React.Component {
 
   // When 'get info' btn is clicked
   handleStockTickerChange(submission) {
+    debugger;
     this.setState({stockTicker: submission.ticker});
     this.getDataForStockChart(submission.ticker);
+  }
+
+  handleBuyStock(purchase){
+    //cost: this.state.currentPrices[this.state.currentPrices.length - 1],
+    debugger;
+    fetch(`https://api.iextrading.com/1.0/stock/${this.state.stockTicker}/quote`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+
+      let payLoad = {
+        quantity: purchase.quantity,
+        portfolio: purchase.portfolio,
+        ticker: this.state.stockTicker,
+        cost_basis: body.delayedPrice
+      }
+
+      fetch(`/api/v1/stock_holdings/`,{
+          credentials: 'same-origin',
+          method: 'POST',
+          body: JSON.stringify(payLoad),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+          if (response.ok) {
+            debugger;
+            return response;
+          } else {
+            debugger;
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw(error);
+          }
+        })
+        .then(response => response.json())
+        .then(info => {debugger;})
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   // handleSubmit(event){
@@ -161,11 +211,15 @@ class StockContainer extends React.Component {
         <LogoTile
           ticker={this.state.stockTicker}
         />
+        <BuyStockForm
+          buyStock={this.handleBuyStock}
+        />
         <FundamentalsPanel
           ticker={this.state.stockTicker}
         />
         <h2>Charts</h2>
         <div id="container" ref="myInput" style={divStyle}></div>
+
       </div>
     )
   }

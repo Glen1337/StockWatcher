@@ -5,39 +5,80 @@ class BuyStockForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ticker: ''
+      quantity: 0,
+      portfolio: ''
     }
-    this.handleTickerChange = this.handleTickerChange.bind(this);
+    this.handlePortfolioChange = this.handlePortfolioChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps){
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.ticker !== nextProps.ticker){
+      console.log("Fundamentals fetch in FundamentalsPanel")
+      fetch(`https://api.iextrading.com/1.0/stock/${nextProps.ticker}/stats`)
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({stats: body});
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+  }
+
   handleClearForm(event) {
     event.preventDefault();
-    this.setState({ticker: ''})
+    this.setState({quantity: 0, portfolio: ''})
   }
 
   handleFormSubmit(event) {
     event.preventDefault();
-    let formPayload = {ticker: this.state.ticker};
-    this.props.changeTicker(formPayload);
+    let formPayload = {
+      quantity: this.state.quantity,
+      portfolio: this.state.portfolio
+    };
+    // bubble up passed-in handler
+    this.props.buyStock(formPayload);
     this.handleClearForm(event);
   }
 
-  handleTickerChange(event) {
-    this.setState({ ticker: event.target.value })
+  handlePortfolioChange(event) {
+    this.setState({portfolio: event.target.value })
+  }
+
+  handleQuantityChange(event) {
+    this.setState({quantity: event.target.value })
   }
 
   render() {
     return (
       <form onSubmit={this.handleFormSubmit}>
         <InputField
-          label='Stock Symbol'
-          name='ticker'
-          content={this.state.ticker}
-          handleChange={this.handleTickerChange}
+          label='Portfolio'
+          name='portfolio'
+          content={this.state.portfolio}
+          handleChange={this.handlePortfolioChange}
         />
-        <input type='submit' value='Get Info'/>
+        <InputField
+          label='Quantity'
+          name='quantity'
+          content={this.state.quantity}
+          handleChange={this.handleQuantityChange}
+        />
+        <input type='submit' value='Buy Stock'/>
       </form>
     );
   }
