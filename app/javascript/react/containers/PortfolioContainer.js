@@ -1,6 +1,7 @@
 import React from 'react';
 import PortfolioTile from '../components/PortfolioTile'
 import PortfolioFormContainer from './PortfolioFormContainer'
+import BackButton from '../components/BackButton'
 
 
 class PortfolioContainer extends React.Component {
@@ -97,6 +98,7 @@ class PortfolioContainer extends React.Component {
     })
     return(
       <div>
+        <BackButton />
         <h1>Portfolios</h1>
         {portfolios}
         <h2>Create A New Portfolio</h2>

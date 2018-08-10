@@ -2,8 +2,9 @@ import React from 'react';
 import InputField from '../components/InputField'
 import LogoTile from '../components/LogoTile'
 import StockFormContainer from './StockFormContainer'
-import FundamentalsPanel from './FundamentalsPanel'
+import StatisticsPanel from './StatisticsPanel'
 import BuyStockForm from './BuyStockForm'
+import BackButton from '../components/BackButton'
 
 
 const divStyle = {
@@ -164,6 +165,7 @@ class StockContainer extends React.Component {
     .then(body => {
 
       let payLoad = {
+        notes: purchase.notes,
         quantity: purchase.quantity,
         portfolio: purchase.portfolio,
         ticker: this.state.stockTicker,
@@ -204,22 +206,25 @@ class StockContainer extends React.Component {
     }
     return(
       <div>
+        <BackButton />
         <h1>Research/Add a Stock</h1>
         <StockFormContainer
           changeTicker={this.handleStockTickerChange}
         />
+        <hr /><br />
         <LogoTile
           ticker={this.state.stockTicker}
         />
-        <BuyStockForm
-          buyStock={this.handleBuyStock}
-        />
-        <FundamentalsPanel
+        <br />
+        <StatisticsPanel
           ticker={this.state.stockTicker}
         />
         {chartsTitle}
         <div id="container" ref="myInput" style={divStyle}></div>
-
+        <BuyStockForm
+          buyStock={this.handleBuyStock}
+        />
+        <br />
       </div>
     )
   }

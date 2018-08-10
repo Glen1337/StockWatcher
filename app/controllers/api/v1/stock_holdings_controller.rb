@@ -30,5 +30,5 @@ class Api::V1::StockHoldingsController < ApplicationController
 end
 
 def stock_holding_params
-  params.require(:stock_holding).permit(:ticker, :quantity, :cost_basis)
+  params.require(:stock_holding).permit(:ticker, :quantity, :cost_basis, :notes)
 end
