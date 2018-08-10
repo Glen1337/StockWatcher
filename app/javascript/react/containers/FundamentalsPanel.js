@@ -1,4 +1,5 @@
 import React from 'react';
+import Statistic from '../components/Statistic'
 
 class FundamentalsPanel extends React.Component {
   constructor(props){
@@ -11,7 +12,7 @@ class FundamentalsPanel extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.ticker !== nextProps.ticker){
-      console.log("fund. panel fetch");
+      console.log("Fundamentals fetch in FundamentalsPanel")
       fetch(`https://api.iextrading.com/1.0/stock/${nextProps.ticker}/stats`)
       .then(response => {
         if (response.ok) {
@@ -31,15 +32,26 @@ class FundamentalsPanel extends React.Component {
   }
 
   render() {
-    // debugger;
-    // for (var key in this.state.stats) {
-    //   console.log(key, stats[key]);
-    // }
-     console.log(this.state.stats)
-
+    let statsList = [];
+    let count = 0;
+    for (const [key, value] of Object.entries(this.state.stats)) {
+      count++;
+      let val = value;
+      if (typeof(value) == "number"){
+        val = NumOutput(value);
+      }
+      statsList.push(
+        <Statistic
+          statKey={unCamel(key)}
+          statValue={val}
+          key={count}
+        />
+      );
+    }
     return(
       <div>
         <h2>Fundamentals</h2>
+        {statsList}
       </div>
     )
   }

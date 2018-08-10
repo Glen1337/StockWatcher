@@ -25,6 +25,7 @@ class StockContainer extends React.Component {
   }
 
   getDataForStockChart(ticker){
+    console.log("Chart data fetch in StockContainer");
     fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/3m`)
     .then(response => {
       if (response.ok) {

@@ -12,7 +12,7 @@ class LogoTile extends React.Component {
   componentWillReceiveProps(nextProps) {
     // if (this.props.ticker){
     if (this.props.ticker !== nextProps.ticker){
-      console.log("logo tile fetch")
+      console.log("logo tile fetch in LogoTile")
       fetch(`https://api.iextrading.com/1.0/stock/${nextProps.ticker}/logo`)
       .then(response => {
         if (response.ok) {

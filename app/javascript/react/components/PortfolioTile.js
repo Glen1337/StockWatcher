@@ -41,7 +41,7 @@ class PortfolioTile extends Component {
   getCurrentValues(holdings){
     if (holdings.length > 0){
       let tickersToGet = holdings.map(holding => holding.ticker).join(',');
-      console.log("fetching IEX data for " + tickersToGet)
+      console.log("fetching IEX data for Portfolio: " + tickersToGet)
       fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickersToGet}&types=quote`)
       .then(response => {
         if (response.ok) {
