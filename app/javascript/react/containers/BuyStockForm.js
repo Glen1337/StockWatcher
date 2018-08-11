@@ -6,14 +6,36 @@ class BuyStockForm extends Component {
     super(props);
     this.state = {
       quantity: 0,
-      portfolio: '',
-      notes: ''
+      portfolio: 0,
+      notes: '',
+      portOptions: []
     }
     this.handleNotesChange = this.handleNotesChange.bind(this);
     this.handlePortfolioChange = this.handlePortfolioChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+      fetch(`/api/v1/portfolios`, {credentials: 'same-origin'})
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          portOptions: body.portfolios,
+          portfolio: body.portfolios[0].id
+        })
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   handleClearForm(event) {
@@ -46,16 +68,29 @@ class BuyStockForm extends Component {
   }
 
   render() {
+    let portfolios = this.state.portOptions;
+    let optionItems = portfolios.map((portfolio) => {
+      return <option value={portfolio.id} key={portfolio.id}>{portfolio.name}</option>
+    });
+
     return (
       <div>
         <h2>Buy This Stock</h2>
         <form onSubmit={this.handleFormSubmit}>
-          <InputField
+          <label>Portfolio
+            <select
+             name='portfolio'
+             value={this.state.portfolio}
+             onChange={this.handlePortfolioChange}>
+             {optionItems}
+           </select>
+         </label>
+          {/*}<InputField
             label='Portfolio'
             name='portfolio'
             content={this.state.portfolio}
             handleChange={this.handlePortfolioChange}
-          />
+          />*/}
           <InputField
             label='Notes'
             name='notes'
@@ -65,6 +100,7 @@ class BuyStockForm extends Component {
           <label>Quantity
             <input
             min='1'
+            value='1'
             type='number'
             name='quantity'
             value={this.state.quantity}
