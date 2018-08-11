@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get "/stock", to: "stock_holdings#index"
+  get "/about", to: "homes#show"
+  # get "/about", to: ""
   # get "/portfolios", to: "portfolios#index"
-
+  resources :homes, only: [:index]
+  resources :stock_holdings, only: [:index]
   resources :portfolios, only: [:index]
 
   namespace :api do

@@ -200,6 +200,7 @@ class StockContainer extends React.Component {
   // }
 
   render() {
+    console.log("stock container render");
     let chartsTitle;
     if (this.state.stockTicker){
       chartsTitle = <h2>Charts</h2>
