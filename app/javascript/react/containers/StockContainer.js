@@ -188,7 +188,6 @@ class StockContainer extends React.Component {
           }
         })
         .then(response => response.json())
-        .then(info => {debugger;})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

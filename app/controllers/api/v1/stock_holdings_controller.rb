@@ -3,7 +3,6 @@ class Api::V1::StockHoldingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    binding.pry
     render json: StockHolding.all
     # stocks = StockHolding.all
   end
