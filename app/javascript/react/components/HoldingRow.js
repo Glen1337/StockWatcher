@@ -8,19 +8,6 @@ const HoldingRow = (props) => {
     let plString = '';
     let plTotalString = ''
 
-    // if (pl > 0){
-    //   plString=`+${NumOutput(pl)}`;
-    //   plTotalString=`+${NumOutput(plTotal)}`;
-    // }else if (pl < 0) {
-    //   plTotalString=`${NumOutput(plTotal)}`;
-    //   plString=`${NumOutput(pl)}`;
-    // } else {
-    //   plTotalString = 'none';
-    //   plString = 'none';
-    // }
-
-    // percent = (currentPrice - costBasis)/
-
     return (
       <tr>
         <td><b>{props.ticker}</b></td>

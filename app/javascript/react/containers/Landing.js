@@ -1,6 +1,6 @@
 import BackButton from '../components/BackButton'
 import React from 'react';
-import PortfolioTile from '../components/PortfolioTile'
+import PortfolioTile from '../tiles/PortfolioTile'
 
 class Landing extends React.Component {
   constructor(props){
