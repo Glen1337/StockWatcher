@@ -16,27 +16,6 @@ class BuyStockForm extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.ticker !== nextProps.ticker){
-      console.log("Fundamentals fetch in FundamentalsPanel")
-      fetch(`https://api.iextrading.com/1.0/stock/${nextProps.ticker}/stats`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({stats: body});
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
-    }
-  }
-
   handleClearForm(event) {
     event.preventDefault();
     this.setState({quantity: 0, portfolio: '', notes: ''})
