@@ -1,5 +1,5 @@
 import React from 'react';
-import PortfolioTile from '../components/PortfolioTile'
+import PortfolioTile from '../tiles/PortfolioTile'
 import PortfolioFormContainer from './PortfolioFormContainer'
 import BackButton from '../components/BackButton'
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import InputField from '../components/InputField'
-import LogoTile from '../components/LogoTile'
+import LogoTile from '../tiles/LogoTile'
 import StockFormContainer from './StockFormContainer'
 import StatisticsPanel from './StatisticsPanel'
 import BuyStockForm from './BuyStockForm'
@@ -30,7 +30,7 @@ class StockContainer extends React.Component {
 
   getDataForStockChart(ticker){
     console.log("Chart data fetch in StockContainer");
-    fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/3m`)
+    fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/6m`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -65,6 +65,12 @@ class StockContainer extends React.Component {
       // Create whole chart
       chart = anychart.stock();
 
+      //Top, right, bottom, left
+      chart.padding(10, 10, 10, 65);
+
+      let grouping = chart.grouping();
+      grouping.minPixPerPoint(10);
+
       // Make data table
       table = anychart.data.table();
       table.addData(this.state.currentPrices);
@@ -79,57 +85,65 @@ class StockContainer extends React.Component {
 
       // Mapping for volume data
       let volMapping = table.mapAs({'value': 5});
+
+      // Mapping for MFI
       let mfiMapping = table.mapAs({'high': 2, 'low': 3, 'close': 4, 'volume': 5});
 
       // Price plot
       let plot_1 = chart.plot(0);
+      plot_1.xAxis().ticks(true).minorTicks(true);
       let candleSeries = plot_1.candlestick(mapping);
       candleSeries.name(this.state.stockTicker);
-
       // Change color of candlesticks
       candleSeries.risingFill("#60C03F");
       candleSeries.fallingFill("#CB2113");
       candleSeries.risingStroke("#115C09");
       candleSeries.fallingStroke("#7F0004");
-
-
-      plot_1.yGrid().enabled(true);
       // Change crosshair, grid, and x-axis labels for first plot
+      plot_1.yGrid().enabled(true);
       plot_1.crosshair().xStroke("#483d8b", 1.6, "round");
       plot_1.crosshair().yStroke("#483d8b", 1.6, "round");
 
-      // let xAxis = plot_1.xAxis();
-      // xAxis.labels().position('right').anchor('left_center');
-      // xAxis.minorLabels().position('right').anchor('left_center');
-      // xAxis.background('#D2E5F6');
-      // xAxis.height(40);
-
-
       // Volume plot
       let plot_2 = chart.plot(1);
+      // plot_2.title('Volume');
+      plot_2.xAxis().ticks(true).minorTicks(true);
       plot_2.column(volMapping).name('Volume');
-
       plot_2.yMinorGrid().palette(["LightGrey", null]);
-      // Set series type for volume chart
       plot_2.crosshair().xStroke("#483d8b", 1.6, "round");
       plot_2.crosshair().yStroke("#483d8b", 1.6, "round");
 
       // MFI plot
       let plot_3 = chart.plot(2);
-      let mfiIndicator = plot_3.mfi(mfiMapping).series()
-      mfiIndicator.stroke("2 red");
+      let mfiIndicator = plot_3.mfi(mfiMapping, 8 , "area").series()
+      mfiIndicator.fill("#ffa500");
+      mfiIndicator.stroke("2 green");
+      plot_3.xAxis().ticks(true).minorTicks(true);
 
       // MACD plot
-      let plot_4 = chart.plot(3)
+      let plot_4 = chart.plot(3);
       let macdIndicator = plot_4.macd(mapping, 12, 26, 9);
+      plot_4.xAxis().ticks(true).minorTicks(true);
+
       macdIndicator.macdSeries().stroke('#bf360c');
       macdIndicator.signalSeries().stroke('#ff6d00');
       macdIndicator.histogramSeries().fill('#ffe082');
+
+      // Stochastic plot
+      let plot_5 = chart.plot(4);
+      let stochastic = plot_5.stochastic(mapping, 24, "EMA", 10, "SMA", 5);
+      plot_5.xAxis().ticks(true).minorTicks(true);
+      let stochastic_k = stochastic.kSeries();
+      stochastic_k.stroke("2 #ffa500");
+      let stochastic_d = stochastic.dSeries();
+      stochastic_d.stroke("2 #191970");
+
 
       // let grouping = chart.grouping();
       // grouping.minPixPerPoint(1);
       // Chart title
       // state and prevState not working here
+
       // Draw whole chart
       chart.title(this.state.stockTicker);
       // chart.title(prevState.stockTicker);
