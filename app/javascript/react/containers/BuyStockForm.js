@@ -64,6 +64,7 @@ class BuyStockForm extends Component {
           />
           <label>Quantity
             <input
+            min='1'
             type='number'
             name='quantity'
             value={this.state.quantity}

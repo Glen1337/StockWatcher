@@ -168,7 +168,7 @@ class StockContainer extends React.Component {
         notes: purchase.notes,
         quantity: purchase.quantity,
         portfolio: purchase.portfolio,
-        ticker: this.state.stockTicker,
+        ticker: this.state.stockTicker.toUpperCase(),
         cost_basis: body.delayedPrice
       }
 
