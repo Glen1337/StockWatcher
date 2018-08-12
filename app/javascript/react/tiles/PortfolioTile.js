@@ -130,7 +130,7 @@ class PortfolioTile extends Component {
       <h4><b><u>{this.state.name}</u></b>&nbsp;&nbsp;
         Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
         Original value: ${NumOutput(originalPortfolioValue)}&nbsp;&nbsp;
-        <button onClick={this.props.deleteClick}>Delete Portfolio</button></h4>
+        <button className="button small" onClick={this.props.deleteClick}>Delete Portfolio</button></h4>
       <table>
         <thead>
           <tr>

@@ -30,15 +30,19 @@ class StockFormContainer extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <InputField
-          label='Stock Symbol'
-          name='ticker'
-          content={this.state.ticker}
-          handleChange={this.handleTickerChange}
-        />
-        <input type='submit' value='Get Info'/>
-      </form>
+      <div className="row">
+        <form onSubmit={this.handleFormSubmit}>
+          <InputField
+            label='Stock Symbol'
+            name='ticker'
+            content={this.state.ticker}
+            handleChange={this.handleTickerChange}
+          />
+          <div className="small-4 medium-4 large-4 small-centered medium-centered large-centered text-center columns">
+            <button className="button small" type='submit'>Get Stock Info</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
