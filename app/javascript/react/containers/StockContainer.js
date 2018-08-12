@@ -30,7 +30,7 @@ class StockContainer extends React.Component {
 
   getDataForStockChart(ticker){
     console.log("Chart data fetch in StockContainer");
-    fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/6m`)
+    fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/1y`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -206,38 +206,44 @@ class StockContainer extends React.Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  // handleSubmit(event){
-  //   event.preventDefault();
-  //   this.getDataForStockChart();
-  //   // this.handleClearForm(event);
-  // }
-
   render() {
     console.log("stock container render");
     let chartsTitle;
+    let form;
     if (this.state.stockTicker){
-      chartsTitle = <h2>Charts</h2>
+       chartsTitle = <h2>Charts</h2>
+       form = <BuyStockForm buyStock={this.handleBuyStock} />
     }
     return(
       <div>
-        <h1>Research/Add a Stock</h1>
-        <StockFormContainer
-          changeTicker={this.handleStockTickerChange}
-        />
-        <hr /><br />
-        <LogoTile
-          ticker={this.state.stockTicker}
-        />
-        <br />
-        <StatisticsPanel
-          ticker={this.state.stockTicker}
-        />
-        {chartsTitle}
-        <div id="container" ref="myInput" style={divStyle}></div>
-        <BuyStockForm
-          buyStock={this.handleBuyStock}
-        />
-        <br />
+        <div className="row">
+          <div className="small-centered medium-centered large-centered small-8 large-8 medium-8 columns">
+            <h1 className="text-center">Research and Add a Stock</h1>
+            <StockFormContainer changeTicker={this.handleStockTickerChange}/>
+          </div>
+        </div>
+        <div className="row text-center"><h1 className="green-title">{this.state.stockTicker}</h1></div>
+        <div className="row">
+          <div className="small-9 medium-9 large-9 columns">
+            <div className="row">
+              {chartsTitle}
+              <div id="container" ref="myInput" style={divStyle}></div>
+            </div>
+            <div className="row">
+              <div className="small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
+                <br />
+                {form}
+                <br />
+              </div>
+            </div>
+          </div>
+          {/*}<div className="small-1 medium-1 large-1 columns"></div>*/}
+          <div className="small-3 medium-3 large-3 columns">
+          <h2>&nbsp;</h2>
+            <LogoTile ticker={this.state.stockTicker}/>
+            <StatisticsPanel ticker={this.state.stockTicker} />
+          </div>
+        </div>
       </div>
     )
   }

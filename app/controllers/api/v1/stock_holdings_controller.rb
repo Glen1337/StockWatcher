@@ -8,9 +8,11 @@ class Api::V1::StockHoldingsController < ApplicationController
   end
 
   def destroy
-    stock = StockHolding.find(params[:holding_id])
-    stock.delete
-    render json: { deleted: stock.ticker }
+    if user_signed_in?
+      stock = StockHolding.find(params[:holding_id])
+      stock.delete
+      render json: { deleted: stock.ticker }
+    end
   end
 
   def create
