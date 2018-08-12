@@ -85,12 +85,6 @@ class BuyStockForm extends Component {
              {optionItems}
            </select>
          </label>
-          {/*}<InputField
-            label='Portfolio'
-            name='portfolio'
-            content={this.state.portfolio}
-            handleChange={this.handlePortfolioChange}
-          />*/}
           <InputField
             label='Notes'
             name='notes'
@@ -107,11 +101,10 @@ class BuyStockForm extends Component {
             onChange={this.handleQuantityChange}
             />
           </label>
-          <input type='submit' value='Buy Stock'/>
+          <button className="button small" type='submit'>Add Stock</button>
         </form>
       </div>
     );
   }
 }
-
 export default BuyStockForm;

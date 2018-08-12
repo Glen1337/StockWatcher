@@ -651,16 +651,16 @@ $form-label-line-height: 1.6;
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
-$input-font-color: $green;
+$input-font-color: $white;
  $input-font-size: rem-calc(15);
 // $input-placeholder-font-color: #cccccc;
- $input-bg-color: scale-color($dark, $lightness: -40%);
- $input-border-color: scale-color($green, $lightness: -60%);
+ $input-bg-color: scale-color($dark, $lightness: -20%);
+ $input-border-color: $green;
 
  $input-focus-bg-color: $dark;
- $input-focus-border-color: scale-color($green, $lightness: -10%);
+ $input-focus-border-color: scale-color($green, $lightness: -40%);
 // $input-border-style: solid;
-// $input-border-width: 1px;
+ $input-border-width: 1px;
 // $input-border-radius: $global-radius;
 // $input-disabled-bg: $gainsboro;
 // $input-disabled-cursor: $cursor-default-value;
@@ -710,8 +710,8 @@ $input-font-color: $green;
 // $input-transition-fade-timing-function: linear;
 
 // Select variables
-// $select-bg-color: $ghost;
-// $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%);
+ $select-bg-color: $dark;
+ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -20%);
 
 
 // 12. Icon Bar

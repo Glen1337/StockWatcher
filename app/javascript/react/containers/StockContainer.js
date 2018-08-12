@@ -206,12 +206,6 @@ class StockContainer extends React.Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  // handleSubmit(event){
-  //   event.preventDefault();
-  //   this.getDataForStockChart();
-  //   // this.handleClearForm(event);
-  // }
-
   render() {
     console.log("stock container render");
     let chartsTitle;
@@ -228,13 +222,24 @@ class StockContainer extends React.Component {
             <StockFormContainer changeTicker={this.handleStockTickerChange}/>
           </div>
         </div>
+        <div className="row text-center"><h1 className="green-title">{this.state.stockTicker}</h1></div>
         <div className="row">
           <div className="small-9 medium-9 large-9 columns">
-            {chartsTitle}
-            <div id="container" ref="myInput" style={divStyle}></div>
-            {form}
+            <div className="row">
+              {chartsTitle}
+              <div id="container" ref="myInput" style={divStyle}></div>
+            </div>
+            <div className="row">
+              <div className="small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
+                <br />
+                {form}
+                <br />
+              </div>
+            </div>
           </div>
+          {/*}<div className="small-1 medium-1 large-1 columns"></div>*/}
           <div className="small-3 medium-3 large-3 columns">
+          <h2>&nbsp;</h2>
             <LogoTile ticker={this.state.stockTicker}/>
             <StatisticsPanel ticker={this.state.stockTicker} />
           </div>

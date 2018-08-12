@@ -11,7 +11,12 @@ class Landing extends React.Component {
   }
 
   render() {
-
+    let message;
+    if (typeof(window.currentUser) == 'undefined'){
+      message = 'Start by logging in or signing up first.'
+    }else{
+      message = 'Start by researching a stock.'
+    }
     return(
       <div>
         <BackButton />
@@ -23,7 +28,7 @@ class Landing extends React.Component {
             <br />
             <h1>Welcome to StockWatcher</h1>
             <br />
-            <h3>Start by researching a stock</h3>
+            <h3>{message}</h3>
           </div>
         </div>
       </div>

@@ -81,11 +81,11 @@ class PortfolioContainer extends React.Component {
     .then(responseData => {
       debugger;
       if (responseData.error) {
-        debugger;
+        // debugger;
         // nick
         // set the errors in state
       } else {
-        debugger;
+        // debugger;
         this.setState({portfolios: [...this.state.portfolios, responseData]})
       }
     })
@@ -113,11 +113,11 @@ class PortfolioContainer extends React.Component {
           <BackButton />
         </div>
         <div className= "row>">
-          <div className="columns small-8 medium-8 large-8">
+          <div className="columns small-7 medium-7 large-7">
             <h1>Portfolios</h1>
             {portfolios}
           </div>
-          <div className="columns small-4 medium-4 large-4">
+          <div className="columns small-5 medium-5 large-5">
           <br /><br /><br />
           <h2>Create A New Portfolio</h2>
           <PortfolioFormContainer addPortfolio={this.addPortfolio} />
