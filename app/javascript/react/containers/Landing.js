@@ -28,7 +28,7 @@ class Landing extends React.Component {
               <span><b>Welcome to StockWatcher</b></span>
             </h1>
             {/*}<h1><b>Welcome to StockWatcher</b></h1>*/}
-            <h1 className="padded-multiline"><span>&nbsp;&nbsp;&nbsp;{message}</span></h1>
+            <h1 className="padded-multiline">&nbsp;&nbsp;&nbsp;<span>{message}</span></h1>
           </div>
         </div>
       </div>

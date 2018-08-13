@@ -19,6 +19,14 @@ $dark : #1C1C1C;
   margin-left: .6rem;
 }
 
+hr {
+  color: $green;
+}
+
+footer{
+  bottom: 0;
+  background-color: $dark;
+}
 
  .padded-multiline {
   line-height: 1.7;
