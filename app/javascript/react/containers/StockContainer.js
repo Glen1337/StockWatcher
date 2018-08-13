@@ -19,7 +19,8 @@ class StockContainer extends React.Component {
     this.state = {
       stockTicker: '',
       currentPrices: [],
-      show: false
+      show: false,
+      valid: null
     }
     this.handleBuyStock= this.handleBuyStock.bind(this);
     this.handleStockTickerChange = this.handleStockTickerChange.bind(this);
@@ -42,7 +43,7 @@ class StockContainer extends React.Component {
     })
     .then(response => response.json())
     .then(this.handleNewStockData)
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
+    .catch(error => {this.setState({valid: false}); console.error(`Error in fetch: ${error.message}`)});
   }
 
   handleNewStockData(body) {
@@ -52,7 +53,8 @@ class StockContainer extends React.Component {
     });
     this.setState({
       show: true,
-      currentPrices: arrayOfArrays
+      currentPrices: arrayOfArrays,
+      valid: true
     });
   }
 
@@ -209,10 +211,20 @@ class StockContainer extends React.Component {
   render() {
     console.log("stock container render");
     let chartsTitle;
+    let validitity =''
     let form;
+    let pageHead = ''
     if (this.state.stockTicker){
-       chartsTitle = <h2>Charts</h2>
-       form = <BuyStockForm buyStock={this.handleBuyStock} />
+
+    }
+    if (this.state.valid === null){
+      pageHead='';
+    }else if (!this.state.valid){
+      pageHead = <h1 className="alert-box alert">Invalid Ticker</h1>;
+    }else{
+      chartsTitle = <h2>Charts</h2>
+      form = <BuyStockForm buyStock={this.handleBuyStock} />
+      pageHead = <h1 className="green-title">{this.state.stockTicker}</h1>;
     }
     return(
       <div>
@@ -222,7 +234,9 @@ class StockContainer extends React.Component {
             <StockFormContainer changeTicker={this.handleStockTickerChange}/>
           </div>
         </div>
-        <div className="row text-center"><h1 className="green-title">{this.state.stockTicker}</h1></div>
+        <div className="row text-center">
+          {pageHead}
+        </div>
         <div className="row">
           <div className="small-9 medium-9 large-9 columns">
             <div className="row">
