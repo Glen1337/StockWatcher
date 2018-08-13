@@ -19,7 +19,7 @@ class StockFormContainer extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    let formPayload = {ticker: this.state.ticker};
+    let formPayload = {ticker: this.state.ticker.toUpperCase()};
     this.props.changeTicker(formPayload);
     this.handleClearForm(event);
   }
