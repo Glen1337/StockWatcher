@@ -253,8 +253,11 @@ class StockContainer extends React.Component {
           </div>
           {/*}<div className="small-1 medium-1 large-1 columns"></div>*/}
           <div className="small-3 medium-3 large-3 columns">
-          <h2>&nbsp;</h2>
-            <LogoTile ticker={this.state.stockTicker}/>
+            <h2>&nbsp;</h2>
+            <div className="row text-center">
+              <LogoTile ticker={this.state.stockTicker}/>
+              <br />
+            </div>
             <StatisticsPanel ticker={this.state.stockTicker} />
           </div>
         </div>

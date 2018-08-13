@@ -32,6 +32,7 @@ class StatisticsPanel extends React.Component {
   }
 
   render() {
+    let listClass="";
     let title;
     let statsList = [];
     let count = 0;
@@ -49,11 +50,16 @@ class StatisticsPanel extends React.Component {
         />
       );
     }
-    if (statsList.length > 0) {title = <h2>Statistics</h2>}
+    if (statsList.length > 0) {
+      listClass = "pricing-table"
+      title = <li className="title">Statistics</li>
+    }
     return(
       <div>
-        {title}
-        {statsList}
+        <ul className={listClass}>
+          {title}
+          {statsList}
+        </ul>
       </div>
     )
   }

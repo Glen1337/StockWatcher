@@ -3,7 +3,7 @@ import React from 'react';
 const Statistic =(props) =>{
   return(
     <div>
-      <span>{props.statKey} : {props.statValue}</span>
+      <li className="bullet-item">{props.statKey} : {props.statValue}</li>
     </div>
   )
 }
