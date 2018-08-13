@@ -3,7 +3,6 @@ import PortfolioTile from '../tiles/PortfolioTile'
 import PortfolioFormContainer from './PortfolioFormContainer'
 import BackButton from '../components/BackButton'
 
-
 class PortfolioContainer extends React.Component {
   constructor(props){
     super(props)
@@ -110,7 +109,7 @@ class PortfolioContainer extends React.Component {
     return(
       <div>
         <div className="row">
-          <div className="back row">
+          <div className="text-left row">
             <BackButton />
           </div>
           <div className= "row>">

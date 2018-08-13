@@ -128,13 +128,15 @@ class PortfolioTile extends Component {
     return (
       <div>
         <div className="row" style={{margin: '0px'}}>
-          <div className= "text-center large-12 medium-12 small-12 columns">
-            <h3>
-              <u>{this.state.name}</u>
-            </h3>
+
+          <div className="row">
+            <div className= "text-center large-12 medium-12 small-12 columns">
+              <h3><u>{this.state.name}</u></h3>
+            </div>
           </div>
-          <div className="row text-left">
-            <div className="small-8 large-8 medium-8 columns">
+
+          <div className="row">
+            <div className="text-left small-8 large-8 medium-8 columns">
               <h4>
                 Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
                 Original value: ${NumOutput(originalPortfolioValue)}&nbsp;&nbsp;
@@ -144,8 +146,6 @@ class PortfolioTile extends Component {
               <button className="button tiny" onClick={this.props.deleteClick}>Delete Portfolio</button>
             </div>
           </div>
-        </div>
-      <div className="row">
         <table>
           <thead>
             <tr>
@@ -166,6 +166,7 @@ class PortfolioTile extends Component {
           </tbody>
         </table>
       </div>
+      <br /><br />
     </div>
     )
   }
