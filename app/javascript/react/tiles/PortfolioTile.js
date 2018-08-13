@@ -145,26 +145,27 @@ class PortfolioTile extends Component {
             </div>
           </div>
         </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th> Stock </th>
-            <th> Quantity </th>
-            <th> Cost Basis </th>
-            <th> Current Price </th>
-            <th> Profit/Loss </th>
-            <th> Profit/Loss per share </th>
-            <th> % Gain/Loss </th>
-            <th> Notes </th>
-            <th> Bought on </th>
-            <th> Remove </th>
-          </tr>
-        </thead>
-        <tbody>
-          {holdings}
-        </tbody>
-      </table>
+      <div className="row">
+        <table>
+          <thead>
+            <tr>
+              <th> Stock </th>
+              <th> Quantity </th>
+              <th> Cost Basis </th>
+              <th> Current Price </th>
+              <th> Profit/Loss </th>
+              <th> Profit/Loss per share </th>
+              <th> % Gain/Loss </th>
+              <th> Notes </th>
+              <th> Bought on </th>
+              <th> Remove </th>
+            </tr>
+          </thead>
+          <tbody>
+            {holdings}
+          </tbody>
+        </table>
+      </div>
     </div>
     )
   }

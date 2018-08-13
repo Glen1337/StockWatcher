@@ -275,7 +275,7 @@ $dark : #1C1C1C;
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
  $anchor-font-color: $white;
-// $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
+ $anchor-font-color-hover: $green;
 
 // We use these to style the <hr> element
 $hr-border-width: 1px;

@@ -30,9 +30,24 @@
       <ul class="right">
         <%- if current_user -%>
           <li><%= link_to 'About', about_path %></li>
-          <li><%= link_to 'Research', stock_holdings_path %></li>
-          <li><%= link_to 'Portfolios', portfolios_path %></li>
-          <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+          <li>
+            <%= link_to stock_holdings_path do%>
+              <i class="fas fa-chart-line"></i>
+              <span>Research</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to portfolios_path do %>
+              <i class="fas fa-table"></i>
+              <span>Portfolios</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_user_registration_path do %>
+              <i class="far fa-user"></i>
+              <span>Edit Profile</span>
+            <% end %>
+          </li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
@@ -80,8 +95,8 @@
         <p>Launch Academy Breakable Toy</p>
       </div>
       <div class="columns small-2 medium-2 large-2">
-        <p><a href="https://github.com/Glen1337/">Github</a></p>
-        <a href="https://www.linkedin.com/in/glenanderson4096/">LinkedIn</a>
+        <a href="https://github.com/Glen1337/">GitHub <span><i class="fab fa-github"></i></span></a><br><br>
+        <a href="https://www.linkedin.com/in/glenanderson4096/">LinkedIn <span><i class="fab fa-linkedin"></i></span></a>
       </div>
       <div class="columns small-4 medium-4 large-4">
       </div>
