@@ -140,7 +140,7 @@ class PortfolioTile extends Component {
                 Original value: ${NumOutput(originalPortfolioValue)}&nbsp;&nbsp;
               </h4>
             </div>
-            <div className="text-center small-4 large-4 medium-4 columns">
+            <div className="text-right small-4 large-4 medium-4 columns">
               <button className="button tiny" onClick={this.props.deleteClick}>Delete Portfolio</button>
             </div>
           </div>
