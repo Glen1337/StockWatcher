@@ -117,6 +117,7 @@ class PortfolioContainer extends React.Component {
             <div className="columns small-8 medium-8 large-8">
               <h1>Portfolios</h1>
               {portfolios}
+              <br />
             </div>
             <div className="left columns small-4 medium-4 large-4">
             <br /><br /><br />
