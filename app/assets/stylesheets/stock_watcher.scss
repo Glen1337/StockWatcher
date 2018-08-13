@@ -19,6 +19,40 @@ $dark : #1C1C1C;
   margin-left: .6rem;
 }
 
+hr {
+  color: $green;
+}
+
+footer{
+  bottom: 0;
+  background-color: $dark;
+}
+
+ .padded-multiline {
+  line-height: 1.7;
+  padding: 20px 10px 10px 50px;
+  width: 800px;
+  margin: 10px auto;
+}
+.padded-multiline span {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  display: inline;
+  padding: 0.5rem;
+
+  /* Needs prefixing */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.landing{
+  background-image: url(https://thechemco.com/wp-content/uploads/2015/11/AdobeStock_71214135.jpeg);
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 body{
   background: rgb(84,84,84) !important;
   background: linear-gradient(0deg, rgba(84,84,84,1) 0%, rgba(28,28,28,1) 50%, rgba(84,84,84,1) 100%) !important;

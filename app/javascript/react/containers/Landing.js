@@ -18,17 +18,17 @@ class Landing extends React.Component {
       message = 'Start by researching a stock.'
     }
     return(
-      <div>
+      <div className="landing">
         <BackButton />
         <div className="row">
-          <div className= "small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
-            <br />
-            <br />
-            <br />
-            <br />
-            <h1>Welcome to StockWatcher</h1>
-            <br />
-            <h3>{message}</h3>
+
+          <div className= "small-8 medium-8 large-8 columns">
+            <h1 className="padded-multiline">
+            <br/><br/>
+              <span><b>Welcome to StockWatcher</b></span>
+            </h1>
+            {/*}<h1><b>Welcome to StockWatcher</b></h1>*/}
+            <h1 className="padded-multiline">&nbsp;&nbsp;&nbsp;<span>{message}</span></h1>
           </div>
         </div>
       </div>

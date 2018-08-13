@@ -75,7 +75,7 @@ class BuyStockForm extends Component {
 
     return (
       <div>
-        <h2>Buy This Stock</h2>
+        <h2>Add This Stock</h2>
         <form onSubmit={this.handleFormSubmit}>
           <label>Portfolio
             <select

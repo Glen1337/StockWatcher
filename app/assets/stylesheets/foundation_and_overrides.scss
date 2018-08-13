@@ -274,13 +274,13 @@ $dark : #1C1C1C;
 // We use these to style anchors
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
-// $anchor-font-color: $primary-color;
+ $anchor-font-color: $white;
 // $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
 
 // We use these to style the <hr> element
-// $hr-border-width: 1px;
+$hr-border-width: 1px;
 // $hr-border-style: solid;
-// $hr-border-color: $gainsboro;
+$hr-border-color: $green;
 // $hr-margin: rem-calc(20);
 
 // We use these to style lists
@@ -468,7 +468,7 @@ $dark : #1C1C1C;
 // $button-function-factor: -20%;
 
 // We use these to control button border styles.
-  $button-border-width: 2px;
+$button-border-width: 2px;
 // $button-border-style: solid;
 // $button-bg-color: $primary-color;
  $button-bg-hover: scale-color($green, $lightness: -40%);
@@ -655,16 +655,19 @@ $input-font-color: $white;
  $input-font-size: rem-calc(15);
 // $input-placeholder-font-color: #cccccc;
  $input-bg-color: scale-color($dark, $lightness: -20%);
- $input-border-color: $green;
+ $input-border-color: scale-color($green, $lightness: -40%);
 
  $input-focus-bg-color: $dark;
- $input-focus-border-color: scale-color($green, $lightness: -40%);
+ $input-focus-border-color: $green;
 // $input-border-style: solid;
  $input-border-width: 1px;
 // $input-border-radius: $global-radius;
 // $input-disabled-bg: $gainsboro;
 // $input-disabled-cursor: $cursor-default-value;
-// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+ $input-box-shadow: inset 0px 0px 2px 0px rgba(106,227,104,.7),
+                    0px 0px 2px 0px rgba(106,227,104,.7);
+
+
 // input-include-glowing-effect: true;
 
 // We use these to style the fieldset border and spacing.
@@ -982,7 +985,7 @@ $input-font-color: $white;
 // $pagination-link-unavailable-bg-active: transparent;
 
 // We use these for currently selected anchor links
-// $pagination-link-current-background: $primary-color;
+ $pagination-link-current-background: $white;
 // $pagination-link-current-font-color: $white;
 // $pagination-link-current-font-weight: $font-weight-bold;
 // $pagination-link-current-cursor: default;

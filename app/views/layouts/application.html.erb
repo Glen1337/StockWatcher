@@ -49,9 +49,8 @@
     <%- end -%>
   </div>
 
-<div className = "row">
   <%= yield %>
-</div>
+
   <!-- <div id="container" style="width: 100%; height: 100%"></div> -->
 
   <%= javascript_include_tag 'application' %>
@@ -70,8 +69,23 @@
 
   <%= yield :extra_footer %>
   <footer>
+    <hr>
     <div class="row">
-    </div>
+      <div class="columns small-4 medium-4 large-4">
+        &nbsp;
+      </div>
+      <div class="columns small-2 medium-2 large-2">
+        <p> Glen Anderson 2018</p>
+        <p>Launch Academy Breakable Toy</p>
+      </div>
+      <div class="columns small-2 medium-2 large-2">
+        <p><a href="https://github.com/Glen1337/">Github</a></p>
+        <a href="https://www.linkedin.com/in/glenanderson4096/">LinkedIn</a>
+      </div>
+      <div class="columns small-4 medium-4 large-4">
+      </div>
+        &nbsp;
+      </div>
   </footer>
 </body>
 </html>

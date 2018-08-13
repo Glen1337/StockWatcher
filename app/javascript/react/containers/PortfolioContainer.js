@@ -109,18 +109,21 @@ class PortfolioContainer extends React.Component {
     })
     return(
       <div>
-        <div className="back row">
-          <BackButton />
-        </div>
-        <div className= "row>">
-          <div className="columns small-7 medium-7 large-7">
-            <h1>Portfolios</h1>
-            {portfolios}
+        <div className="row">
+          <div className="back row">
+            <BackButton />
           </div>
-          <div className="columns small-5 medium-5 large-5">
-          <br /><br /><br />
-          <h2>Create A New Portfolio</h2>
-          <PortfolioFormContainer addPortfolio={this.addPortfolio} />
+          <div className= "row>">
+            <div className="columns small-8 medium-8 large-8">
+              <h1>Portfolios</h1>
+              {portfolios}
+              <br />
+            </div>
+            <div className="left columns small-4 medium-4 large-4">
+            <br /><br /><br />
+            <h2>Create A New Portfolio</h2>
+            <PortfolioFormContainer addPortfolio={this.addPortfolio} />
+            </div>
           </div>
         </div>
       </div>
