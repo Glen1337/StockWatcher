@@ -275,7 +275,7 @@ $dark : #1C1C1C;
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
  $anchor-font-color: $white;
-// $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
+ $anchor-font-color-hover: $green;
 
 // We use these to style the <hr> element
 $hr-border-width: 1px;
@@ -1333,7 +1333,7 @@ $table-head-font-weight: 600;
 
 // These control the row padding and font styles
 // $table-row-padding: rem-calc(9 10);
-// $table-row-font-size: rem-calc(14);
+ $table-row-font-size: rem-calc(15);
 $table-row-font-color: $white;
 // $table-line-height: rem-calc(18);
 

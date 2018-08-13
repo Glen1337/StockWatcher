@@ -15,9 +15,9 @@ $green : #6AE368;
 $gray : #545454;
 $dark : #1C1C1C;
 
-.back {
-  margin-left: .6rem;
-}
+// .back {
+//   margin-left: .6rem;
+// }
 
 hr {
   color: $green;
@@ -92,6 +92,10 @@ div#container{
   z-index: 1000;
   position: sticky; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
+}
+
+footer span > a{
+  font-family: 'Nunito', Times, serif;
 }
 
 //https://cssgradientbutton.com/#

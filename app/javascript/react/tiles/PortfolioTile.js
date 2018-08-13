@@ -128,43 +128,45 @@ class PortfolioTile extends Component {
     return (
       <div>
         <div className="row" style={{margin: '0px'}}>
-          <div className= "text-center large-12 medium-12 small-12 columns">
-            <h3>
-              <u>{this.state.name}</u>
-            </h3>
+
+          <div className="row">
+            <div className= "text-center large-12 medium-12 small-12 columns">
+              <h3><u>{this.state.name}</u></h3>
+            </div>
           </div>
-          <div className="row text-left">
-            <div className="small-8 large-8 medium-8 columns">
+
+          <div className="row">
+            <div className="text-left small-8 large-8 medium-8 columns">
               <h4>
                 Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
                 Original value: ${NumOutput(originalPortfolioValue)}&nbsp;&nbsp;
               </h4>
             </div>
-            <div className="text-right small-4 large-4 medium-4 columns">
+            <div className="text-center small-4 large-4 medium-4 columns">
               <button className="button tiny" onClick={this.props.deleteClick}>Delete Portfolio</button>
             </div>
           </div>
-        </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th> Stock </th>
-            <th> Quantity </th>
-            <th> Cost Basis </th>
-            <th> Current Price </th>
-            <th> Profit/Loss </th>
-            <th> Profit/Loss per share </th>
-            <th> % Gain/Loss </th>
-            <th> Notes </th>
-            <th> Bought on </th>
-            <th> Remove </th>
-          </tr>
-        </thead>
-        <tbody>
-          {holdings}
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th> Stock </th>
+              <th> Quantity </th>
+              <th> Cost Basis </th>
+              <th> Current Price </th>
+              <th> Profit/Loss </th>
+              <th> Profit/Loss per share </th>
+              <th> % Gain/Loss </th>
+              <th> Notes </th>
+              <th> Bought on </th>
+              <th> Remove </th>
+            </tr>
+          </thead>
+          <tbody>
+            {holdings}
+          </tbody>
+        </table>
+      </div>
+      <br /><br />
     </div>
     )
   }
