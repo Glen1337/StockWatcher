@@ -122,7 +122,7 @@ $dark : #1C1C1C;
 // We use these as default colors throughout
  $primary-color: $green;
 // $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
+ $alert-color: #e5552d;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
@@ -131,7 +131,7 @@ $dark : #1C1C1C;
  $body-bg: $gray;
  $body-font-color: $white;
 // $body-font-family: $font-family-sans-serif;
-// $body-font-weight: $font-weight-normal;
+ $body-font-weight: $font-weight-normal;
  $body-font-style:  'Nunito', sans-serif;
 
 // We use this to control font-smoothing
@@ -361,7 +361,7 @@ $hr-border-color: $green;
 
 // We use these to control text style.
 // $alert-font-weight: $font-weight-normal;
-// $alert-font-size: rem-calc(13);
+ $alert-font-size: rem-calc(15);
 // $alert-font-color: $white;
 // $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
 
@@ -385,7 +385,7 @@ $hr-border-color: $green;
 // $alert-close-background: inherit;
 
 // We use this to control border radius
-// $alert-radius: $global-radius;
+ $alert-radius: 20px;
 
 // $alert-transition-speed: 300ms;
 // $alert-transition-ease: ease-out;
