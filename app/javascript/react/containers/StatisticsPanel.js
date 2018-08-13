@@ -39,9 +39,7 @@ class StatisticsPanel extends React.Component {
     for (const [key, value] of Object.entries(this.state.stats)) {
       count++;
       let val = value;
-      if (typeof(value) == "number"){
-        val = NumOutput(value);
-      }
+      if (typeof(value) == "number"){ val = NumOutput(value); }
       statsList.push(
         <Statistic
           statKey={unCamel(key)}
@@ -51,7 +49,7 @@ class StatisticsPanel extends React.Component {
       );
     }
     if (statsList.length > 0) {
-      listClass = "pricing-table"
+      listClass = "pricing-table green-border"
       title = <li className="title">Statistics</li>
     }
     return(
