@@ -8,19 +8,7 @@ class StatisticsPanel extends React.Component {
       ticker: '',
       stats: ''
     }
-    this.upperCase = this.upperCase.bind(this);
   }
-
-
-  upperCase(str){
-   return str.replace
-      ( /(^[a-z]+)|[0-9]+|[A-Z][a-z]+|[A-Z]+(?=[A-Z][a-z]|[0-9])/g
-      , function(match, first){
-          if (first) match = match[0].toUpperCase() + match.substr(1);
-          return match + ' ';
-          }
-       )
-   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.ticker !== nextProps.ticker){
@@ -54,7 +42,7 @@ class StatisticsPanel extends React.Component {
       if (typeof(value) == "number"){ val = NumOutput(value); }
       statsList.push(
         <Statistic
-          statKey={this.upperCase(key)}
+          statKey={unCamel(key)}
           statValue={val}
           key={count}
         />

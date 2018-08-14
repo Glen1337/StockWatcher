@@ -16,6 +16,8 @@
 //= require activestorage
 //= require_tree .
 
+// Using ES6 here will give Heroku Harmony error when deploying.
+
 $(function(){ $(document).foundation(); });
 
 // In: number
@@ -23,7 +25,7 @@ $(function(){ $(document).foundation(); });
 // Prettify nubmers by:
 // 1. Adding commas for thousands
 // 2. Rounding if needed
-let NumOutput = function(input){
+var NumOutput = function(input){
   num = +input.toFixed(2);
   num = parseFloat(num).toLocaleString();
   return num;
@@ -36,7 +38,7 @@ let NumOutput = function(input){
 // 2. Adding commas for thousands
 // 3. Rounding if needed
 // 4. Prepends an optional symbol between the +/- and number (%,$,etc.)
-let SignNumOutput = function(input, prepend = ''){
+var SignNumOutput = function(input, prepend = ''){
   num = +input.toFixed(2);
   num = parseFloat(num);
 
@@ -48,6 +50,16 @@ let SignNumOutput = function(input, prepend = ''){
     return '0';
   }
 }
+
+var unCamel = function(str){
+ return str.replace
+    ( /(^[a-z]+)|[0-9]+|[A-Z][a-z]+|[A-Z]+(?=[A-Z][a-z]|[0-9])/g
+    , function(match, first){
+        if (first) match = match[0].toUpperCase() + match.substr(1);
+        return match + ' ';
+        }
+     )
+ }
 
 $(function(){
       var flashDurationInSeconds = 10;
