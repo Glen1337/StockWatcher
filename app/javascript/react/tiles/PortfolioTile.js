@@ -128,13 +128,11 @@ class PortfolioTile extends Component {
     return (
       <div>
         <div className="row" style={{margin: '0px'}}>
-
           <div className="row">
             <div className= "text-center large-12 medium-12 small-12 columns">
               <h3><u>{this.state.name}</u></h3>
             </div>
           </div>
-
           <div className="row">
             <div className="text-left small-8 large-8 medium-8 columns">
               <h4>
@@ -146,28 +144,18 @@ class PortfolioTile extends Component {
               <button className="button tiny" onClick={this.props.deleteClick}>Delete Portfolio</button>
             </div>
           </div>
-        <table>
-          <thead>
-            <tr>
-              <th> Stock </th>
-              <th> Quantity </th>
-              <th> Cost Basis </th>
-              <th> Current Price </th>
-              <th> Profit/Loss </th>
-              <th> Profit/Loss per share </th>
-              <th> % Gain/Loss </th>
-              <th> Notes </th>
-              <th> Bought on </th>
-              <th> Remove </th>
-            </tr>
-          </thead>
-          <tbody>
-            {holdings}
-          </tbody>
-        </table>
+          <div className="row">
+            <div className="small-12 medium-12 large-12 columns">
+              <table>
+                <thead>
+                  <tr><th> Stock </th><th> Quantity </th><th> Cost Basis </th><th> Current Price </th><th> Profit/Loss </th><th> Profit/Loss per share </th><th> % Gain/Loss </th><th> Notes </th><th> Bought on </th><th> Remove </th></tr>
+                </thead>
+                <tbody>{holdings}</tbody>
+              </table>
+            </div>
+          </div>
+        </div><br /><br />
       </div>
-      <br /><br />
-    </div>
     )
   }
 }

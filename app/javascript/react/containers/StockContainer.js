@@ -6,7 +6,6 @@ import StatisticsPanel from './StatisticsPanel'
 import BuyStockForm from './BuyStockForm'
 import BackButton from '../components/BackButton'
 
-
 const divStyle = {
   // width: '100%'
   // height: '100%'
@@ -231,9 +230,7 @@ class StockContainer extends React.Component {
     let validitity =''
     let form;
     let pageHead = ''
-    if (this.state.stockTicker){
-
-    }
+    if (this.state.stockTicker){ }
     if (this.state.valid === null){
       pageHead='';
     }else if (!this.state.valid){
@@ -262,19 +259,16 @@ class StockContainer extends React.Component {
             </div>
             <div className="row">
               <div className="small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
-                <br />
-                <br />
+                <br /><br />
                 {form}
                 <br />
               </div>
             </div>
           </div>
-          {/*}<div className="small-1 medium-1 large-1 columns"></div>*/}
           <div className="small-3 medium-3 large-3 columns">
             <h2>&nbsp;</h2>
             <div className="row text-center">
-              <LogoTile ticker={this.state.stockTicker}/>
-              <br />
+              <LogoTile ticker={this.state.stockTicker}/><br />
             </div>
             <StatisticsPanel ticker={this.state.stockTicker} />
           </div>

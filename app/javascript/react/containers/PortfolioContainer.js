@@ -119,8 +119,8 @@ class PortfolioContainer extends React.Component {
               <br />
             </div>
             <div className="left columns small-4 medium-4 large-4">
-            <br /><br /><br />
-            <h2>Create A New Portfolio</h2>
+            <br /><br /><br /><br /><br />
+            <h3>Create A New Portfolio</h3>
             <PortfolioFormContainer addPortfolio={this.addPortfolio} />
             </div>
           </div>

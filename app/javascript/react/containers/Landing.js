@@ -22,7 +22,7 @@ class Landing extends React.Component {
         <BackButton />
         <div className="row">
 
-          <div className= "small-8 medium-8 large-8 columns">
+          <div className= "small-8 medium-8 large-8 columns small-centered medium-centered large-centered">
             <h1 className="padded-multiline">
             <br/><br/>
               <span><b>Welcome to StockWatcher</b></span>
