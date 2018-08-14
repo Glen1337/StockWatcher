@@ -81,7 +81,7 @@ class PortfolioContainer extends React.Component {
       debugger;
       if (responseData.error) {
         // debugger;
-        // nick
+        // n
         // set the errors in state
       } else {
         // debugger;

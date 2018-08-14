@@ -79,6 +79,7 @@ class BuyStockForm extends Component {
         <form onSubmit={this.handleFormSubmit}>
           <label>Portfolio
             <select
+            className="green-border"
              name='portfolio'
              value={this.state.portfolio}
              onChange={this.handlePortfolioChange}>

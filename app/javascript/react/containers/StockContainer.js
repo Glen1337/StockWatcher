@@ -41,11 +41,14 @@ class StockContainer extends React.Component {
       }
     })
     .then(response => response.json())
-    .then(this.handleNewStockData)
+    .then(body => {
+      // this.setState({stockTicker: ticker})
+      this.handleNewStockData(body, ticker)
+    })
     .catch(error => {this.setState({valid: false}); console.error(`Error in fetch: ${error.message}`)});
   }
 
-  handleNewStockData(body) {
+  handleNewStockData(body, ticker) {
     let arrayOfArrays = []
     body.forEach(obj => {
       arrayOfArrays.push([obj["date"], obj["open"], obj["high"], obj["low"], obj["close"],obj["volume"]]);
@@ -53,24 +56,34 @@ class StockContainer extends React.Component {
     this.setState({
       show: true,
       currentPrices: arrayOfArrays,
+      stockTicker: ticker,
       valid: true
     });
   }
 
   componentDidUpdate(prevProps, prevState){
     if (this.state.currentPrices.length > 1 && this.state.show){
+
+      // Refactor: at the end of chart generating function,
+      // iterate through this array of charts and do things to each array
+      let plotArray = [];
+
+      let crosshairColor = '#ca68ff';
       let table, mapping, chart;
       // Clear container div
       this.refs.myInput.innerHTML = '';
 
       // Create whole chart
       chart = anychart.stock();
+      anychart.theme('darkGlamour');
+
 
       //Top, right, bottom, left
-      chart.padding(10, 10, 10, 65);
+      chart.padding(10, 10, 10, 75);
 
+      // Chart grouping
       let grouping = chart.grouping();
-      grouping.maxVisiblePoints(240);
+      grouping.maxVisiblePoints(170);
 
       // Make data table
       table = anychart.data.table();
@@ -93,17 +106,25 @@ class StockContainer extends React.Component {
       // Price plot
       let plot_1 = chart.plot(0);
       plot_1.xAxis().ticks(true).minorTicks(true);
+
+
       let candleSeries = plot_1.candlestick(mapping);
-      candleSeries.name(this.state.stockTicker);
+      candleSeries.name('Stock price');
       // Change color of candlesticks
       candleSeries.risingFill("#60C03F");
       candleSeries.fallingFill("#CB2113");
-      candleSeries.risingStroke("#115C09");
-      candleSeries.fallingStroke("#7F0004");
+      candleSeries.risingStroke("#115C09", 2);
+      candleSeries.fallingStroke("#7F0004", 2);
       // Change crosshair, grid, and x-axis labels for first plot
       plot_1.yGrid().enabled(true);
-      plot_1.crosshair().xStroke("#483d8b", 1.6, "round");
-      plot_1.crosshair().yStroke("#483d8b", 1.6, "round");
+      plot_1.crosshair().xStroke(crosshairColor, 1.6, "round");
+      plot_1.crosshair().yStroke(crosshairColor, 1.6, "round");
+      plot_1.xAxis().minorTicks().stroke("#808080");
+
+      // plot_1.legend().title(true);
+      // plot_1.legend().title().orientation('top').align('left');
+      // plot_1.legend().titleFormat(function(){return("Price")});
+      // plot_1.legend().titleSeparator(true);
 
       //EMA 100 on candlestick chart
       let ema15 = plot_1.ema(mapping, 10).series();
@@ -112,58 +133,133 @@ class StockContainer extends React.Component {
       let ema50 = plot_1.ema(mapping, 40).series();
       ema50.stroke('2 purple');
 
+      plot_1.title('Candlestick');
+      let title = plot_1.title();
+      title.fontWeight(900);
+
+      // plot_1.yAxis().labels().fontColor('black')
+      // plot_1.xAxis().labels().fontColor('black')
+      // plot_1.yAxis().labels().fontWeight(700)
+      // plot_1.xAxis().labels().fontWeight(700)
+
       // Volume plot
       let plot_2 = chart.plot(1);
-      // plot_2.title('Volume');
+      plot_2.title('Volume');
+      plot_2.title().fontWeight(900);
       plot_2.xAxis().ticks(true).minorTicks(true);
       plot_2.column(volMapping).name('Volume');
       plot_2.yMinorGrid().palette(["LightGrey", null]);
-      plot_2.crosshair().xStroke("#483d8b", 1.6, "round");
-      plot_2.crosshair().yStroke("#483d8b", 1.6, "round");
+      plot_2.crosshair().xStroke(crosshairColor, 1.6, "round");
+      plot_2.crosshair().yStroke(crosshairColor, 1.6, "round");
+      plot_2.xAxis().minorTicks().stroke("#808080");
+
 
       // MFI plot
       let plot_3 = chart.plot(2);
+      plot_3.title('Money Flow Index');
+      plot_3.title().fontWeight(900)
       let mfiIndicator = plot_3.mfi(mfiMapping, 8 , "area").series()
       mfiIndicator.fill("#ffa500");
       mfiIndicator.stroke("2 green");
       plot_3.yGrid().enabled(true);
       plot_3.xAxis().ticks(true).minorTicks(true);
-      plot_3.crosshair().xStroke("#483d8b", 1.6, "round");
-      plot_3.crosshair().yStroke("#483d8b", 1.6, "round");
+      plot_3.crosshair().xStroke(crosshairColor, 2, "round");
+      plot_3.crosshair().yStroke(crosshairColor, 2, "round");
+      plot_3.xAxis().minorTicks().stroke("#808080");
+
 
       // MACD plot
       let plot_4 = chart.plot(3);
+      plot_4.title('MACD');
+      plot_4.title().fontWeight(900);
       let macdIndicator = plot_4.macd(mapping, 12, 26, 9);
       plot_4.xAxis().ticks(true).minorTicks(true);
-      plot_4.crosshair().xStroke("#483d8b", 1.6, "round");
-      plot_4.crosshair().yStroke("#483d8b", 1.6, "round");
+      plot_4.crosshair().xStroke(crosshairColor, 1.6, "round");
+      plot_4.crosshair().yStroke(crosshairColor, 1.6, "round");
       plot_4.yGrid().enabled(true);
+      plot_4.yGrid().stroke({color: "#808080", dash: "12 3"});
+      plot_4.xAxis().minorTicks().stroke("#808080");
 
-      macdIndicator.macdSeries().stroke('#bf360c');
-      macdIndicator.signalSeries().stroke('#ff6d00');
+
+
+      macdIndicator.macdSeries().stroke('#bf360c', 2);
+      macdIndicator.signalSeries().stroke('#ff6d00', 2);
       macdIndicator.histogramSeries().fill('#ffe082');
 
       // Stochastic plot
       let plot_5 = chart.plot(4);
+      plot_5.title().fontWeight(900)
       let stochastic = plot_5.stochastic(mapping, 24, "EMA", 10, "SMA", 5);
-      plot_5.crosshair().xStroke("#483d8b", 1.6, "round");
-      plot_5.crosshair().yStroke("#483d8b", 1.6, "round");
+      plot_5.title('Full Stochastic');
+      plot_5.crosshair().xStroke(crosshairColor, 2, "round");
+      plot_5.crosshair().yStroke(crosshairColor, 2, "round");
       plot_5.xAxis().ticks(true).minorTicks(true);
+
       let stochastic_k = stochastic.kSeries();
       stochastic_k.stroke("2 #ffa500");
       let stochastic_d = stochastic.dSeries();
       stochastic_d.stroke("2 #191970");
+
+      plot_5.xAxis().minorTicks().stroke("#808080");
+      //plot_5.xAxis().ticks().stroke("#808080");
+
+      //plot_5.xAxis().minorTicks().stroke('gray');
+      //plot_5.xAxis().ticks().stroke('gray');
+
       plot_5.yGrid().enabled(true);
+      plot_5.yGrid().stroke('#808080');
 
-
-
+      // var xAxis = plot_5.xAxis();
+      // xAxis.stroke("black");
+      // var xLabels = xAxis.labels();
+      // xLabels.fontColor("black");
+      // xLabels.fontWeight(700);
+      // xLabels.height(30);
+      // xLabels.vAlign("middle");
+      //
       // let grouping = chart.grouping();
       // grouping.minPixPerPoint(1);
       // Chart title
       // state and prevState not working here
 
+      chart.scroller().column(mapping);
+
+      // access labels
+      let labels = chart.scroller().xAxis().labels();
+      let minorLabels = chart.scroller().xAxis().minorLabels();
+      minorLabels.fontColor('#808080');
+      labels.fontColor('#808080');
+
+      // set major labels text format
+      labels.format(function () {
+        return "'" + anychart.format.dateTime(this.tickValue, "yyyy");
+      });
+
+      // set labels color
+      labels.fontColor('#000000');
+
+      // set minor labels text format
+      minorLabels.format(function (){
+        return anychart.format.dateTime(this.tickValue, 'MMM, dd');
+      });
+
+      // set minor labels font
+      minorLabels.fontColor('#000000');
+      minorLabels.fontSize(9);
+
       // Draw whole chart
       chart.title(this.state.stockTicker);
+      chart.title().fontSize(18);
+      chart.title().fontWeight(900);
+
+      // set the fill color
+  // chart.xScroller().fill("#33CC33");
+  //
+  // // set the selected fill color
+  // chart.xScroller().selectedFill("#339966");
+  // background settings
+  // background settings
+
       // chart.title(prevState.stockTicker);
       chart.container('container');
 
@@ -177,7 +273,6 @@ class StockContainer extends React.Component {
 
   // When 'get info' btn is clicked
   handleStockTickerChange(submission) {
-    this.setState({stockTicker: submission.ticker});
     this.getDataForStockChart(submission.ticker);
   }
 
@@ -248,7 +343,7 @@ class StockContainer extends React.Component {
             <StockFormContainer changeTicker={this.handleStockTickerChange}/>
           </div>
         </div>
-        <div className="row text-center">
+        <div className="medium-centered small-centered large-centered columns small-6 medium-6 large-6 row text-center">
           {pageHead}
         </div>
         <div className="row">

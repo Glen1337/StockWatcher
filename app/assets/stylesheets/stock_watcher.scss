@@ -64,10 +64,11 @@ body{
   background: linear-gradient(0deg, rgba(84,84,84,1) 0%, rgba(28,28,28,1) 50%, rgba(84,84,84,1) 100%) !important;
 }
 
- #title, nav > ul > li h1 a{
-//   font-size: 2rem;
-//   font-weight: 400;
-   color: #6AE368 !important;
+nav > ul > li h1 a{
+  // font-size: 2rem;
+  // font-weight: 400;
+  // it's fine
+  color: $green !important;
  }
 
  .green-title{
