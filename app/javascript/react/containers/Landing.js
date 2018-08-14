@@ -19,9 +19,11 @@ class Landing extends React.Component {
     }
     return(
       <div className="landing">
-        <BackButton />
+        <div className="left row">
+        <br />
+          <BackButton />
+        </div>
         <div className="row">
-
           <div className= "small-8 medium-8 large-8 columns small-centered medium-centered large-centered">
             <h1 className="padded-multiline">
             <br/><br/>
