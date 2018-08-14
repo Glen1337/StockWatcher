@@ -17,6 +17,7 @@
 //= require_tree .
 
 // Using ES6 here will give Heroku Harmony error when deploying.
+//Fix: https://github.com/lautis/uglifier/issues/127
 
 $(function(){ $(document).foundation(); });
 
@@ -25,7 +26,7 @@ $(function(){ $(document).foundation(); });
 // Prettify nubmers by:
 // 1. Adding commas for thousands
 // 2. Rounding if needed
-var NumOutput = function(input){
+let NumOutput = function(input){
   num = +input.toFixed(2);
   num = parseFloat(num).toLocaleString();
   return num;
@@ -38,7 +39,7 @@ var NumOutput = function(input){
 // 2. Adding commas for thousands
 // 3. Rounding if needed
 // 4. Prepends an optional symbol between the +/- and number (%,$,etc.)
-var SignNumOutput = function(input, prepend = ''){
+let SignNumOutput = function(input, prepend = ''){
   num = +input.toFixed(2);
   num = parseFloat(num);
 
@@ -51,7 +52,7 @@ var SignNumOutput = function(input, prepend = ''){
   }
 }
 
-var unCamel = function(str){
+let unCamel = function(str){
  return str.replace
     ( /(^[a-z]+)|[0-9]+|[A-Z][a-z]+|[A-Z]+(?=[A-Z][a-z]|[0-9])/g
     , function(match, first){
