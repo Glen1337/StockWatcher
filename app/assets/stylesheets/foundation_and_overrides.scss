@@ -655,7 +655,7 @@ $input-font-color: $white;
  $input-font-size: rem-calc(15);
 // $input-placeholder-font-color: #cccccc;
  $input-bg-color: scale-color($dark, $lightness: -20%);
- $input-border-color: scale-color($green, $lightness: -40%);
+ $input-border-color: $green;
 
  $input-focus-bg-color: $dark;
  $input-focus-border-color: $green;
