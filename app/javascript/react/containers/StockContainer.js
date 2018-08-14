@@ -6,7 +6,6 @@ import StatisticsPanel from './StatisticsPanel'
 import BuyStockForm from './BuyStockForm'
 import BackButton from '../components/BackButton'
 
-
 const divStyle = {
   // width: '100%'
   // height: '100%'
@@ -71,7 +70,7 @@ class StockContainer extends React.Component {
       chart.padding(10, 10, 10, 65);
 
       let grouping = chart.grouping();
-      grouping.minPixPerPoint(10);
+      grouping.maxVisiblePoints(240);
 
       // Make data table
       table = anychart.data.table();
@@ -106,6 +105,13 @@ class StockContainer extends React.Component {
       plot_1.crosshair().xStroke("#483d8b", 1.6, "round");
       plot_1.crosshair().yStroke("#483d8b", 1.6, "round");
 
+      //EMA 100 on candlestick chart
+      let ema15 = plot_1.ema(mapping, 10).series();
+      ema15.stroke('2 blue');
+
+      let ema50 = plot_1.ema(mapping, 40).series();
+      ema50.stroke('2 purple');
+
       // Volume plot
       let plot_2 = chart.plot(1);
       // plot_2.title('Volume');
@@ -120,12 +126,18 @@ class StockContainer extends React.Component {
       let mfiIndicator = plot_3.mfi(mfiMapping, 8 , "area").series()
       mfiIndicator.fill("#ffa500");
       mfiIndicator.stroke("2 green");
+      plot_3.yGrid().enabled(true);
       plot_3.xAxis().ticks(true).minorTicks(true);
+      plot_3.crosshair().xStroke("#483d8b", 1.6, "round");
+      plot_3.crosshair().yStroke("#483d8b", 1.6, "round");
 
       // MACD plot
       let plot_4 = chart.plot(3);
       let macdIndicator = plot_4.macd(mapping, 12, 26, 9);
       plot_4.xAxis().ticks(true).minorTicks(true);
+      plot_4.crosshair().xStroke("#483d8b", 1.6, "round");
+      plot_4.crosshair().yStroke("#483d8b", 1.6, "round");
+      plot_4.yGrid().enabled(true);
 
       macdIndicator.macdSeries().stroke('#bf360c');
       macdIndicator.signalSeries().stroke('#ff6d00');
@@ -134,11 +146,15 @@ class StockContainer extends React.Component {
       // Stochastic plot
       let plot_5 = chart.plot(4);
       let stochastic = plot_5.stochastic(mapping, 24, "EMA", 10, "SMA", 5);
+      plot_5.crosshair().xStroke("#483d8b", 1.6, "round");
+      plot_5.crosshair().yStroke("#483d8b", 1.6, "round");
       plot_5.xAxis().ticks(true).minorTicks(true);
       let stochastic_k = stochastic.kSeries();
       stochastic_k.stroke("2 #ffa500");
       let stochastic_d = stochastic.dSeries();
       stochastic_d.stroke("2 #191970");
+      plot_5.yGrid().enabled(true);
+
 
 
       // let grouping = chart.grouping();
@@ -214,9 +230,7 @@ class StockContainer extends React.Component {
     let validitity =''
     let form;
     let pageHead = ''
-    if (this.state.stockTicker){
-
-    }
+    if (this.state.stockTicker){ }
     if (this.state.valid === null){
       pageHead='';
     }else if (!this.state.valid){
@@ -245,16 +259,17 @@ class StockContainer extends React.Component {
             </div>
             <div className="row">
               <div className="small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
-                <br />
+                <br /><br />
                 {form}
                 <br />
               </div>
             </div>
           </div>
-          {/*}<div className="small-1 medium-1 large-1 columns"></div>*/}
           <div className="small-3 medium-3 large-3 columns">
-          <h2>&nbsp;</h2>
-            <LogoTile ticker={this.state.stockTicker}/>
+            <h2>&nbsp;</h2>
+            <div className="row text-center">
+              <LogoTile ticker={this.state.stockTicker}/><br />
+            </div>
             <StatisticsPanel ticker={this.state.stockTicker} />
           </div>
         </div>

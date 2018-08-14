@@ -19,6 +19,11 @@ $dark : #1C1C1C;
 //   margin-left: .6rem;
 // }
 
+.green-border {
+   border: solid 1px $green;
+   box-shadow: inset 0px 0px 2px 0px rgba(106,227,104,.7),0px 0px 2px 0px rgba(106,227,104,.7);
+}
+
 hr {
   color: $green;
 }
@@ -46,9 +51,10 @@ footer{
 }
 
 .landing{
+  margin-top: -2rem;
   background-image: url(https://thechemco.com/wp-content/uploads/2015/11/AdobeStock_71214135.jpeg);
   background-size: cover;
-  height: 100vh;
+  height: 105vh;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -81,8 +87,8 @@ body{
 
 // For Chart
 div#container{
-  height: 60rem;
-  width: 100%;
+  height: 65rem;
+  width: 90%;
 }
 
 .top-bar{
