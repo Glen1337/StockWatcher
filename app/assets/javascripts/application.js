@@ -16,16 +16,6 @@
 //= require activestorage
 //= require_tree .
 
-let unCamel = function(str){
- return str.replace
-    ( /(^[a-z]+)|[0-9]+|[A-Z][a-z]+|[A-Z]+(?=[A-Z][a-z]|[0-9])/g
-    , function(match, first){
-        if (first) match = match[0].toUpperCase() + match.substr(1);
-        return match + ' ';
-        }
-     )
- }
-
 $(function(){ $(document).foundation(); });
 
 // In: number
