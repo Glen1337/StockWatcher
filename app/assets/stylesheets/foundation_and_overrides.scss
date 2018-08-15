@@ -657,7 +657,7 @@ $button-border-width: 2px;
  $input-bg-color: scale-color($dark, $lightness: -10%);
  $input-border-color: $green;
 
- $input-focus-bg-color: lighten($dark, 20%);
+ $input-focus-bg-color: lighten($dark, 8%);
  $input-focus-border-color: $green;
 // $input-border-style: solid;
  $input-border-width: 1px;
@@ -1303,7 +1303,7 @@ $price-bg: $white;
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
- $table-bg: $gray;
+ $table-bg: #48604b;
  $table-even-row-bg: $dark;
 
 // These control the table cell border style
