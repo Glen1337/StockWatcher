@@ -470,7 +470,7 @@ $hr-border-color: $green;
 // We use these to control button border styles.
 $button-border-width: 2px;
 // $button-border-style: solid;
-// $button-bg-color: $primary-color;
+ $button-bg-color: $green;
  $button-bg-hover: scale-color($green, $lightness: -40%);
  $button-border-color: $dark;
  // $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
@@ -646,18 +646,18 @@ $button-border-width: 2px;
 // $form-label-pointer: pointer;
  $form-label-font-size: rem-calc(16);
 // $form-label-font-weight: $font-weight-normal;
-$form-label-line-height: 1.6;
+ $form-label-line-height: 1.6;
  $form-label-font-color: $white;
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
-$input-font-color: $white;
+ $input-font-color: $white;
  $input-font-size: rem-calc(15);
 // $input-placeholder-font-color: #cccccc;
- $input-bg-color: scale-color($dark, $lightness: -20%);
+ $input-bg-color: scale-color($dark, $lightness: -10%);
  $input-border-color: $green;
 
- $input-focus-bg-color: $dark;
+ $input-focus-bg-color: lighten($dark, 20%);
  $input-focus-border-color: $green;
 // $input-border-style: solid;
  $input-border-width: 1px;
@@ -1314,7 +1314,7 @@ $price-bg: $white;
 // These control the table head styles
 $table-head-bg: $dark;
 $table-head-font-size: rem-calc(15);
-$table-head-font-color: $green;
+$table-head-font-color: lighten($green, 5%);
 $table-head-font-weight: 600;
 // $table-head-padding: rem-calc(8 10 10);
 
