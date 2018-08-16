@@ -1424,7 +1424,7 @@ $table-row-font-color: $white;
 
 // Set the link colors and styles for top-level nav
 // $topbar-link-color: $white;
- $topbar-link-color-hover: $green;
+ $topbar-link-color-hover: lighten($green, 5%);
 // $topbar-link-color-active: $white;
 // $topbar-link-color-active-hover: $white;
 // $topbar-link-weight: $font-weight-normal;

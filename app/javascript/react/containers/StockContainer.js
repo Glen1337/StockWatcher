@@ -360,7 +360,7 @@ class StockContainer extends React.Component {
             <div className="row text-center">
               <LogoTile ticker={this.state.stockTicker}/><br />
             </div>
-            <StatisticsPanel ticker={this.state.stockTicker} />
+            <StatisticsPanel ticker={this.state.stockTicker} /><br />
           </div>
         </div>
       </div>
