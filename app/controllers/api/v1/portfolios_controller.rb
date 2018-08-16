@@ -23,7 +23,8 @@ class Api::V1::PortfoliosController < ApplicationController
       # up_to_date_portfolios = serialized_portfolios(portfolios)
       render json:
       {
-        portfolios: serialized_portfolios(portfolios)
+        portfolios: serialized_portfolios(portfolios),
+        user: current_user
       }
     end
   end

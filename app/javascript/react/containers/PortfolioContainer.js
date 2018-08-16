@@ -78,7 +78,6 @@ class PortfolioContainer extends React.Component {
     })
     .then(response => response.json())
     .then(responseData => {
-      debugger;
       if (responseData.error) {
         // debugger;
         // n
@@ -108,7 +107,7 @@ class PortfolioContainer extends React.Component {
     })
     return(
       <div>
-        <div className="row">
+        <div style={{height: '100vh'}} className="row">
           <div className="text-left row">
             <BackButton />
           </div>

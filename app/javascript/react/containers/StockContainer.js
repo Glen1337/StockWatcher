@@ -107,7 +107,6 @@ class StockContainer extends React.Component {
       let plot_1 = chart.plot(0);
       plot_1.xAxis().ticks(true).minorTicks(true);
 
-
       let candleSeries = plot_1.candlestick(mapping);
       candleSeries.name('Stock price');
       // Change color of candlesticks
@@ -153,7 +152,6 @@ class StockContainer extends React.Component {
       plot_2.crosshair().yStroke(crosshairColor, 1.6, "round");
       plot_2.xAxis().minorTicks().stroke("#808080");
 
-
       // MFI plot
       let plot_3 = chart.plot(2);
       plot_3.title('Money Flow Index');
@@ -167,7 +165,6 @@ class StockContainer extends React.Component {
       plot_3.crosshair().yStroke(crosshairColor, 2, "round");
       plot_3.xAxis().minorTicks().stroke("#808080");
 
-
       // MACD plot
       let plot_4 = chart.plot(3);
       plot_4.title('MACD');
@@ -177,10 +174,8 @@ class StockContainer extends React.Component {
       plot_4.crosshair().xStroke(crosshairColor, 1.6, "round");
       plot_4.crosshair().yStroke(crosshairColor, 1.6, "round");
       plot_4.yGrid().enabled(true);
-      plot_4.yGrid().stroke({color: "#808080", dash: "12 3"});
+      plot_4.yGrid().stroke({color: "#808080", dash: "12 5"});
       plot_4.xAxis().minorTicks().stroke("#808080");
-
-
 
       macdIndicator.macdSeries().stroke('#bf360c', 2);
       macdIndicator.signalSeries().stroke('#ff6d00', 2);
@@ -208,7 +203,7 @@ class StockContainer extends React.Component {
 
       plot_5.yGrid().enabled(true);
       plot_5.yGrid().stroke('#808080');
-
+      // plot_5.yGrid().stroke({color: '#808080', dash: "12 5"});
       // var xAxis = plot_5.xAxis();
       // xAxis.stroke("black");
       // var xLabels = xAxis.labels();

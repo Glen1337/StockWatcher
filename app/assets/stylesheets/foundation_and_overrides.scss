@@ -278,10 +278,10 @@ $dark : #1C1C1C;
  $anchor-font-color-hover: $green;
 
 // We use these to style the <hr> element
-$hr-border-width: 1px;
+$hr-border-width: 2px;
 // $hr-border-style: solid;
 $hr-border-color: $green;
-// $hr-margin: rem-calc(20);
+$hr-margin: rem-calc(4);
 
 // We use these to style lists
 // $list-font-family: $paragraph-font-family;
@@ -654,10 +654,10 @@ $button-border-width: 2px;
  $input-font-color: $white;
  $input-font-size: rem-calc(15);
 // $input-placeholder-font-color: #cccccc;
- $input-bg-color: scale-color($dark, $lightness: -10%);
+ $input-bg-color: scale-color($dark, $lightness: -5%);
  $input-border-color: $green;
 
- $input-focus-bg-color: lighten($dark, 8%);
+ $input-focus-bg-color: lighten($dark, 4%);
  $input-focus-border-color: $green;
 // $input-border-style: solid;
  $input-border-width: 1px;
@@ -1303,7 +1303,7 @@ $price-bg: $white;
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
- $table-bg: #48604b;
+ $table-bg: darken($green, 65%);
  $table-even-row-bg: $dark;
 
 // These control the table cell border style

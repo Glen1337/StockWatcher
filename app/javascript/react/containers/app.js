@@ -1,9 +1,9 @@
 import PortfolioContainer from './PortfolioContainer'
 import StockContainer from './StockContainer'
-import Landing from './Landing'
+import Landing from '../components/Landing'
 import React, { Component } from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import AboutPage from './AboutPage'
+import AboutPage from '../components/AboutPage'
 
 class App extends Component {
 
