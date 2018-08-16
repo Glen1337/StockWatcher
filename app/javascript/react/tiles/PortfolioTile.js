@@ -66,11 +66,13 @@ class PortfolioTile extends Component {
     event.preventDefault();
     let filteredArray = this.state.holdings.filter(holding => holding.id !== holdingId)
     this.setState({holdings: filteredArray});
-
+    debugger;
     let formPayload = {
-      holding_id: holdingId
+      holding_id: holdingId,
+      // send price too
+      current_price: this.state.current_prices[this.state.holdings.filter(obj => {return obj.id === holdingId})[0].ticker]["quote"].delayedPrice
     };
-
+    // send  current price with delete so we know how much money was made
     fetch(`/api/v1/stock_holdings/${holdingId}`, {
       credentials: 'same-origin',
       method: 'DELETE',

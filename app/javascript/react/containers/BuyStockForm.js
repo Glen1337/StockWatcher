@@ -8,7 +8,8 @@ class BuyStockForm extends Component {
       quantity: 0,
       portfolio: 0,
       notes: '',
-      portOptions: []
+      portOptions: [],
+      balance: 0
     }
     this.handleNotesChange = this.handleNotesChange.bind(this);
     this.handlePortfolioChange = this.handlePortfolioChange.bind(this);
@@ -31,6 +32,8 @@ class BuyStockForm extends Component {
       .then(response => response.json())
       .then(body => {
         this.setState({
+          balance: body.user.balance,
+        //  balance: body.portfolios[0].user.balance,
           portOptions: body.portfolios,
           portfolio: body.portfolios[0].id
         })
@@ -75,7 +78,14 @@ class BuyStockForm extends Component {
 
     return (
       <div>
-        <h2>Add To A Portfolio</h2><br />
+        <div className="row">
+          <div className="small-6 medium-6 large-6 columns">
+            <h2>Add To A Portfolio</h2>
+          </div>
+          <div className="small-6 medium-6 large-6 columns">
+            <h2>Balance: {SignNumOutput(parseFloat(this.state.balance), '$')}</h2><br />
+          </div>
+        </div>
         <form onSubmit={this.handleFormSubmit}>
           <label>Portfolio
             <select

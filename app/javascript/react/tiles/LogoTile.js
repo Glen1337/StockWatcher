@@ -34,7 +34,7 @@ class LogoTile extends React.Component {
   render(){
     let imgElement = null;
     if (this.state.stockUrl){
-      imgElement = <img src={this.state.stockUrl} alt={this.state.ticker.concat(" logo")}/>
+      imgElement = <img className="logo" src={this.state.stockUrl} alt={this.state.ticker.concat(" logo")}/>
     }
     return(
       <div>

@@ -18,7 +18,8 @@
 </head>
 
 <body>
-
+  <!--b-->
+<div class="main-container">
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
@@ -64,9 +65,9 @@
       </div>
     <%- end -%>
   </div>
-
+<div style="position: relative;">
   <%= yield %>
-
+</div>
   <!-- <div id="container" style="width: 100%; height: 100%"></div> -->
 
   <%= javascript_include_tag 'application' %>
@@ -85,7 +86,7 @@
 
   <%= yield :extra_footer %>
   <footer>
-    <hr>
+    <!-- <hr> -->
     <div class="text-center row">
       <div class="columns small-4 medium-4 large-4">
         &nbsp;
@@ -98,10 +99,11 @@
         <a href="https://github.com/Glen1337/">GitHub <span><i class="fab fa-github"></i></span></a><br><br>
         <a href="https://www.linkedin.com/in/glenanderson4096/">LinkedIn <span><i class="fab fa-linkedin"></i></span></a>
       </div>
-      <div class="columns small-4 medium-4 large-4">
-      </div>
+      <div class="columns small-4 medium-4 large-4"></div>
         &nbsp;
-      </div>
+    </div>
   </footer>
+  <!-- b -->
+</div>
 </body>
 </html>
