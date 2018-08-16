@@ -19,7 +19,7 @@ const HoldingRow = (props) => {
         <td>{SignNumOutput(pgl)}%</td>
         <td>{props.note}</td>
         <td>{props.createdAt}</td>
-        <td><button className="button small" onClick={props.deleteHolding}>Delete</button></td>
+        <td><button className="button small" onClick={props.deleteHolding}>Sell</button></td>
       </tr>
     )
   }
