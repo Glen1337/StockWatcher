@@ -69,8 +69,9 @@ footer{
 }
 
 .about{
-  margin-top: -.8rem;
-  background-image: url(http://backgrounds4k.net/wp-content/uploads/2016/03/Stocks-desktop-background.jpg);
+  margin-top: -1rem;
+  //background-image: url(http://backgrounds4k.net/wp-content/uploads/2016/03/Stocks-desktop-background.jpg);
+  background-image: url(asset-path('about.jpeg'));
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -79,7 +80,9 @@ footer{
 
 .landing{
   margin-top: -2rem;
-  background-image: url(https://thechemco.com/wp-content/uploads/2015/11/AdobeStock_71214135.jpeg);
+  // background-image: url(https://thechemco.com/wp-content/uploads/2015/11/AdobeStock_71214135.jpeg);
+//asset-data-url('landing.jpeg');
+  background-image: url(asset-path('landing.jpeg'));
   background-size: cover;
   height: 105vh;
   background-position: center;
