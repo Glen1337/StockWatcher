@@ -301,15 +301,11 @@ class StockContainer extends React.Component {
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
         })
         .then(response => {
-          console.log("TOP OF THEN")
           if (response.ok) {
             return response;
           } else if(response.status === 422 ){
-            console.log("FOUR TWENTY")
             return response;
           } else {
-            console.log("ERROR")
-            debugger;
             let errorMessage = `${response.status} (${response.statusText})`,
               error = new Error(errorMessage);
             throw(error);
@@ -317,13 +313,10 @@ class StockContainer extends React.Component {
         })
         .then(response => response.json())
         .then(responseData => {
-          debugger;
           if (responseData.error) {
-            debugger;
               this.setState({errors: responseData.error});
               // set errors in state
           } else {
-            debugger;
             this.setState({errors: []});
             //good, clear errors in state
           }
