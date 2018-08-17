@@ -1314,7 +1314,9 @@ $price-bg: $white;
 // These control the table head styles
 $table-head-bg: $dark;
 $table-head-font-size: rem-calc(15);
-$table-head-font-color: lighten($green, 5%);
+// $table-head-font-color: lighten($green, 5%);
+$table-head-font-color: $white;
+
 $table-head-font-weight: 600;
 // $table-head-padding: rem-calc(8 10 10);
 

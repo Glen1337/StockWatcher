@@ -10,10 +10,11 @@
 //nav section.top-bar-section ul li a:hover{
   // color: #6AE368 !important;
 //}
-$black : #000000;
-$green : #6AE368;
-$gray : #545454;
-$dark : #1C1C1C;
+$black: #000000;
+$green: #6AE368;
+$gray: #545454;
+$dark: #1C1C1C;
+$red: #E5552d;
 
 // .back {
 //   margin-left: .6rem;
@@ -135,6 +136,14 @@ div#container{
 
 footer span > a{
   font-family: 'Nunito', Times, serif;
+}
+
+.green-text{
+  color: $green;
+}
+
+.red-text{
+  color: $red;
 }
 
 //https://cssgradientbutton.com/#
