@@ -19,7 +19,8 @@ class StockContainer extends React.Component {
       stockTicker: '',
       currentPrices: [],
       show: false,
-      valid: null
+      valid: null,
+      errors: []
     }
     this.handleBuyStock= this.handleBuyStock.bind(this);
     this.handleStockTickerChange = this.handleStockTickerChange.bind(this);
@@ -285,7 +286,6 @@ class StockContainer extends React.Component {
     })
     .then(response => response.json())
     .then(body => {
-
       let payLoad = {
         notes: purchase.notes,
         quantity: purchase.quantity,
@@ -310,17 +310,75 @@ class StockContainer extends React.Component {
           }
         })
         .then(response => response.json())
+        .then(responseData => {
+          debugger;
+          if (responseData.error) {
+              debugger;
+              this.setState({errors: responseData.error});
+              // set errors in state
+          } else {
+            debugger;
+            this.setState({errors: []});
+            //good, clear errors in state
+          }
+        })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
+  // addPortfolio(newPortfolio){
+  //   fetch('/api/v1/portfolios/',{
+  //     credentials: 'same-origin',
+  //     method: 'POST',
+  //     body: JSON.stringify(newPortfolio),
+  //     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+  //   })
+  //   .then(response => {
+  //     if (response.ok) {
+  //       return response;
+  //     } else if (response.status == 422){
+  //       return response;
+  //     }else{
+  //         let errorMessage = `${response.status} (${response.statusText})`,
+  //         error = new Error(errorMessage);
+  //         throw(error);
+  //     }
+  //   })
+  //   .then(response => response.json())
+  //   .then(responseData => {
+  //     if (responseData.error) {
+  //       // debugger;
+  //       // n
+  //       // set the errors in state
+  //     } else {
+  //       // debugger;
+  //       this.setState({portfolios: [...this.state.portfolios, responseData]})
+  //     }
+  //   })
+  //   .catch(error => console.error(`Error in fetch: ${error.message}`));
+  // }
+
+
+
 
   render() {
+    debugger;
     console.log("stock container render");
     let chartsTitle;
     let validitity =''
     let form;
     let pageHead = ''
-    if (this.state.stockTicker){ }
+    let errorList;
+    let errorDiv;
+
+    if(this.state.errors.length > 0){
+      errorList = this.state.errors.map(error => {
+        return <div key={error}>{error}</div>
+      });
+      errorDiv = <div className="alert-box alert">{errorList}</div>
+      debugger;
+    }
+
+    //if (this.state.stockTicker){}
     if (this.state.valid === null){
       pageHead='';
     }else if (!this.state.valid){
@@ -351,6 +409,7 @@ class StockContainer extends React.Component {
               <div className="small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
                 <br /><br />
                 {form}
+                {errorDiv}
                 <br />
               </div>
             </div>
