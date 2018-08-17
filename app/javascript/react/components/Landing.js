@@ -15,7 +15,7 @@ class Landing extends React.Component {
     if (typeof(window.currentUser) == 'undefined'){
       message = 'Start by logging in or signing up first.'
     }else{
-      message = 'Start by researching a stock'
+      message = 'Start by researching a stock.'
     }
     return(
       <div className="landing">

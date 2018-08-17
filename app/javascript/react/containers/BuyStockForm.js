@@ -19,6 +19,7 @@ class BuyStockForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let portId = null;
       fetch(`/api/v1/portfolios`, {credentials: 'same-origin'})
       .then(response => {
         if (response.ok) {
@@ -31,11 +32,14 @@ class BuyStockForm extends Component {
       })
       .then(response => response.json())
       .then(body => {
+        if (typeof(body.portfolios[0])=== 'object'){
+          portId = body.portfolios[0].id;
+        }
         this.setState({
           balance: body.user.balance,
         //  balance: body.portfolios[0].user.balance,
           portOptions: body.portfolios,
-          portfolio: body.portfolios[0].id
+          portfolio: portId
         })
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -80,10 +84,10 @@ class BuyStockForm extends Component {
     return (
       <div>
         <div className="row">
-          <div className="small-6 medium-6 large-6 columns">
+          <div className="small-5 medium-5 large-5 columns">
             <h2>Add To A Portfolio</h2>
           </div>
-          <div className="small-6 medium-6 large-6 columns">
+          <div className="small-7 medium-7 large-7 columns">
             <h2>Purchase Power: {SignNumOutput(parseFloat(this.state.balance), '$')}</h2><br />
           </div>
         </div>

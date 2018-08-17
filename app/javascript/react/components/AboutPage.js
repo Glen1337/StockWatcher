@@ -1,7 +1,6 @@
 import React from 'react';
 import BackButton from '../components/BackButton'
 
-
 const AboutPage =(props) =>{
   return(
     <div className="about">
@@ -18,13 +17,11 @@ const AboutPage =(props) =>{
             analyze stocks and pick ones that you think will appreciate in value.
           </h3>
 
-
           <h3>
             Once you determine which stocks you want to track, you can add them to a portfolio to easily
             check on the stock price later on in the future. This allows you to reflect back on your reasoning
             and decision to buy the stock.
           </h3>
-
 
           <h3>
            After using this process repeatedly over time, you will gradually become comfortable with

@@ -304,6 +304,7 @@ class StockContainer extends React.Component {
           if (response.ok) {
             return response;
           } else {
+            debugger;
             let errorMessage = `${response.status} (${response.statusText})`,
               error = new Error(errorMessage);
             throw(error);
@@ -311,10 +312,13 @@ class StockContainer extends React.Component {
         })
         .then(response => response.json())
         .then(responseData => {
+          debugger;
           if (responseData.error) {
+            debugger;
               this.setState({errors: responseData.error});
               // set errors in state
           } else {
+            debugger;
             this.setState({errors: []});
             //good, clear errors in state
           }

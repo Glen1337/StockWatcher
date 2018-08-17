@@ -1,5 +1,6 @@
 
 class Api::V1::PortfoliosController < ApplicationController
+
   protect_from_forgery unless: -> { request.format.json? }
   # before_action :authenticate_user!
 

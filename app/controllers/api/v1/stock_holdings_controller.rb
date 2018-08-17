@@ -1,8 +1,7 @@
 class Api::V1::StockHoldingsController < ApplicationController
 
   protect_from_forgery unless: -> { request.format.json? }
-
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   def index
     render json: StockHolding.all
