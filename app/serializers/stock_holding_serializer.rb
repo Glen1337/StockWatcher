@@ -6,6 +6,4 @@ class StockHoldingSerializer < ActiveModel::Serializer
     object.created_at.strftime("%d-%m-%Y")
   end
 
-
-
 end

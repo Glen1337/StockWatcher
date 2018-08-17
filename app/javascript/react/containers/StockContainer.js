@@ -301,9 +301,14 @@ class StockContainer extends React.Component {
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
         })
         .then(response => {
+          console.log("TOP OF THEN")
           if (response.ok) {
             return response;
+          } else if(response.status === 422 ){
+            console.log("FOUR TWENTY")
+            return response;
           } else {
+            console.log("ERROR")
             debugger;
             let errorMessage = `${response.status} (${response.statusText})`,
               error = new Error(errorMessage);
