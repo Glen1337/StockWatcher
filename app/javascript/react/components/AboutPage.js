@@ -4,8 +4,9 @@ import BackButton from '../components/BackButton'
 
 const AboutPage =(props) =>{
   return(
-    <div>
+    <div className="about">
       <div className="back row">
+      <br />
         <BackButton />
       </div>
       <br />

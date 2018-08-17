@@ -55,7 +55,8 @@ class BuyStockForm extends Component {
     };
     this.props.buyStock(formPayload);
     this.handleClearForm(event);
-    window.scrollTo(0, 0);
+    //dont go to top of screen when buy btn is clicked
+    //window.scrollTo(0, 0);
   }
 
   handlePortfolioChange(event) {
@@ -83,7 +84,7 @@ class BuyStockForm extends Component {
             <h2>Add To A Portfolio</h2>
           </div>
           <div className="small-6 medium-6 large-6 columns">
-            <h2>Balance: {SignNumOutput(parseFloat(this.state.balance), '$')}</h2><br />
+            <h2>Purchase Power: {SignNumOutput(parseFloat(this.state.balance), '$')}</h2><br />
           </div>
         </div>
         <form onSubmit={this.handleFormSubmit}>
