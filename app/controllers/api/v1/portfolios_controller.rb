@@ -7,6 +7,7 @@ class Api::V1::PortfoliosController < ApplicationController
   def destroy
     if user_signed_in?
       portfolio = Portfolio.find(params[:id])
+      # dont sell all stock_holdings in this portfolio on delete
       portfolio.delete
       render json: { portfolios: serialized_portfolios(Portfolio.all.where(user_id: current_user.id)) }
     end

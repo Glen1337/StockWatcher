@@ -368,7 +368,7 @@ class StockContainer extends React.Component {
               {chartsTitle}
               <div id="container" ref="myInput" style={divStyle}></div>
             </div>
-            <div className="row">
+            <div style={{margin: '0px'}}  className="row">
               <div className="small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
                 <br /><br />
                 {form}
