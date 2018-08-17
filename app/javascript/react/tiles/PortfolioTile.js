@@ -66,7 +66,6 @@ class PortfolioTile extends Component {
     event.preventDefault();
     let filteredArray = this.state.holdings.filter(holding => holding.id !== holdingId)
     this.setState({holdings: filteredArray});
-    debugger;
     let formPayload = {
       holding_id: holdingId,
       // send price too
