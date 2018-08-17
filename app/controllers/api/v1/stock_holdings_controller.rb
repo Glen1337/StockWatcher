@@ -25,7 +25,7 @@ class Api::V1::StockHoldingsController < ApplicationController
       @holding = StockHolding.new(stock_holding_params)
       @holding.portfolio = Portfolio.find_by(id: params[:portfolio], user_id: current_user.id )
       if (@holding.cost_basis * @holding.quantity) > current_user.balance
-        render json: { error: "Insufficient balance in account" }
+        render json: { error: ["Insufficient balance in account"] }
       elsif @holding.save
         current_user.balance -= (@holding.cost_basis * @holding.quantity)
         current_user.save

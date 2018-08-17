@@ -6,6 +6,15 @@ const HoldingRow = (props) => {
     let plTotal = pl * props.quantity
     let pgl = ((props.currentPrice - props.costBasis)/props.costBasis) * 100
 
+    let colorClass;
+
+    if (pl > 0 && plTotal > 0 && pgl > 0){
+      colorClass = "green-text";
+    }
+
+    if (pl < 0 && plTotal < 0 && pgl < 0){
+      colorClass = "red-text";
+    }
     //Assign color class to red or green depending if profit or loss
 
     return (
@@ -14,9 +23,9 @@ const HoldingRow = (props) => {
         <td>{props.quantity}</td>
         <td>${props.costBasis}</td>
         <td>${props.currentPrice}</td>
-        <td>{SignNumOutput(plTotal, '$')}</td>
-        <td>{SignNumOutput(pl, '$')}</td>
-        <td>{SignNumOutput(pgl)}%</td>
+        <td className={colorClass}>{SignNumOutput(plTotal, '$')}</td>
+        <td className={colorClass}>{SignNumOutput(pl, '$')}</td>
+        <td className={colorClass}>{SignNumOutput(pgl)}%</td>
         <td>{props.note}</td>
         <td>{props.createdAt}</td>
         <td><button className="button small" onClick={props.deleteHolding}>Sell</button></td>

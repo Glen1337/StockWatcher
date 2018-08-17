@@ -11,7 +11,6 @@ class PortfolioContainer extends React.Component {
     }
     this.addPortfolio = this.addPortfolio.bind(this);
     this.deletePortfolio = this.deletePortfolio.bind(this);
-
   }
 
   componentDidMount() {

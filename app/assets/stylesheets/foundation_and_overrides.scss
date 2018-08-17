@@ -1314,7 +1314,9 @@ $price-bg: $white;
 // These control the table head styles
 $table-head-bg: $dark;
 $table-head-font-size: rem-calc(15);
-$table-head-font-color: lighten($green, 5%);
+// $table-head-font-color: lighten($green, 5%);
+$table-head-font-color: $white;
+
 $table-head-font-weight: 600;
 // $table-head-padding: rem-calc(8 10 10);
 
@@ -1424,7 +1426,7 @@ $table-row-font-color: $white;
 
 // Set the link colors and styles for top-level nav
 // $topbar-link-color: $white;
- $topbar-link-color-hover: $green;
+ $topbar-link-color-hover: lighten($green, 5%);
 // $topbar-link-color-active: $white;
 // $topbar-link-color-active-hover: $white;
 // $topbar-link-weight: $font-weight-normal;

@@ -9,7 +9,7 @@ class BuyStockForm extends Component {
       portfolio: 0,
       notes: '',
       portOptions: [],
-      balance: 0
+      balance: 0,
     }
     this.handleNotesChange = this.handleNotesChange.bind(this);
     this.handlePortfolioChange = this.handlePortfolioChange.bind(this);
