@@ -45,7 +45,8 @@ footer{
   border-top-color: $green;
   width: 100%;
   position: absolute;
-  padding-top: .8rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   //
   bottom: 0;
   background-color: $dark;
@@ -69,7 +70,7 @@ footer{
 }
 
 .about{
-  margin-top: -1rem;
+  margin-top: -2rem;
   //background-image: url(http://backgrounds4k.net/wp-content/uploads/2016/03/Stocks-desktop-background.jpg);
   background-image: url(asset-path('about.jpg'));
   background-position: center;
@@ -84,7 +85,9 @@ footer{
                0px 0px 15px #000000,
                0px 0px 80px #000000,
                0px 0px 100px #000000,
-               0px 0px 120px #000000;
+               0px 0px 120px #000000,
+               0px 0px 70px #000000,
+               0px 0px 5px #000000;
 }
 
 .landing{
