@@ -128,32 +128,35 @@ class PortfolioTile extends Component {
 
     return (
       <div>
-        <div className="row" style={{margin: '0px'}}>
-          <div className="row">
+        <div className="row wrapper" style={{margin: '0px'}}>
+          {/*}<div className="row">
             <div className= "text-center large-12 medium-12 small-12 columns">
-              <h3><u>{this.state.name}</u></h3>
+              <h2>{this.state.name}</h2>
             </div>
-          </div>
-          <div className="row">
-            <div className="text-left small-7 large-7 medium-7 columns">
+          </div>*/}
+          <div className="row data-equalizer">
+            <div className="text-right small-3 large-3 medium-3 columns data-equalizer-watch">
+            <h2>{this.state.name}</h2>
+            </div>
+            <div className="text-center small-6 large-6 medium-6 columns data-equalizer-watch">
               <h4>
                 Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
                 Original value: ${NumOutput(originalPortfolioValue)}&nbsp;&nbsp;
               </h4>
             </div>
-            <div className="text-center small-5 large-5 medium-5 columns">
+            <div className="text-left small-3 large-3 medium-3 columns data-equalizer-watch">
               <button className="button tiny" onClick={this.props.deleteClick}>Delete Portfolio</button>
             </div>
           </div>
-          <div className="text-right row">
+          <div className="row">
             <table style={{margin: 'auto'}}>
               <thead>
-                <tr><th> Stock </th><th> Quantity </th><th> Cost Basis </th><th> Current Price </th><th> Profit/Loss </th><th> Profit/Loss per share </th><th> % Gain/Loss </th><th> Notes </th><th> Bought on </th><th> Remove </th></tr>
+                <tr><th> Stock </th><th> Quantity </th><th> Cost Basis </th><th> Current Price </th><th> Profit/Loss </th><th> Profit/Loss per share </th><th> % Gain/Loss </th><th>Original Value</th><th>Current Value</th><th> Notes </th><th> Bought on </th><th> Remove </th></tr>
               </thead>
               <tbody>{holdings}</tbody>
             </table>
           </div>
-        </div><br /><br />
+        </div><br /><br /><br /><br />
       </div>
     )
   }

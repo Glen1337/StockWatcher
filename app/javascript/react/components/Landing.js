@@ -19,7 +19,7 @@ class Landing extends React.Component {
     }
     return(
       <div className="landing">
-        <div className="left row">
+        <div className="back row">
         <br />
           <BackButton />
         </div>

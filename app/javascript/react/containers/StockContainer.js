@@ -370,7 +370,7 @@ class StockContainer extends React.Component {
             </div>
             <div style={{margin: '0px'}}  className="row">
               <div className="small-8 medium-8 large-8 small-centered large-centered medium-centered columns">
-                <br /><br />
+                <br /><br /><br />
                 {form}
                 {errorDiv}
                 <br />

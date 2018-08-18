@@ -9,24 +9,25 @@ const AboutPage =(props) =>{
         <BackButton />
       </div>
       <br />
+      <br />
       <div className="row" style={{height: '80vh'}}>
-        <div className="small-9 medium-9 large-9 columns small-centered medium-centered large-centered">
-
+        <div className="small-7 medium-7 large-7 columns small-centered medium-centered large-centered">
           <h3>
             StockWatcher is an application that allows you to use technical and fundamental analysis to
-            analyze stocks and pick ones that you think will appreciate in value.
+            analyze stocks and buy ones that you think will appreciate in value.
+            Once you determine which stocks you want to buy, you can add them to an existing portfolio
+            or create a new portfolio to add them to.
           </h3>
-
+          <br />
           <h3>
-            Once you determine which stocks you want to track, you can add them to a portfolio to easily
-            check on the stock price later on in the future. This allows you to reflect back on your reasoning
-            and decision to buy the stock.
+            Later on, you can check your portfolios
+            to see how correct your stock price predicitons were. By reflecting back on your reasoning
+            process to buy each stock, you will begin to recognize familiar patterns over time. This will
+            allow you to fine-tune your stock analyizing strategies and interpretations of different indicators
           </h3>
-
+          <br />
           <h3>
-           After using this process repeatedly over time, you will gradually become comfortable with
-           recognizing familiar patterns by reflecting back on past purchases, and seeing the results of
-           fundamentals and technical indicators and your interpretation of them.
+            Each account starts off with a value of $10,000.
           </h3>
 
         </div>

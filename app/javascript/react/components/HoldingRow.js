@@ -26,6 +26,8 @@ const HoldingRow = (props) => {
         <td className={colorClass}>{SignNumOutput(plTotal, '$')}</td>
         <td className={colorClass}>{SignNumOutput(pl, '$')}</td>
         <td className={colorClass}>{SignNumOutput(pgl)}%</td>
+        <td>${NumOutput(props.quantity * props.costBasis)}</td>
+        <td>${NumOutput(props.quantity * props.currentPrice)}</td>
         <td>{props.note}</td>
         <td>{props.createdAt}</td>
         <td><button className="button small" onClick={props.deleteHolding}>Sell</button></td>
