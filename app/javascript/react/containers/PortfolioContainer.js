@@ -82,7 +82,6 @@ class PortfolioContainer extends React.Component {
         // n
         // set the errors in state
       } else {
-        // debugger;
         this.setState({portfolios: [...this.state.portfolios, responseData]})
       }
     })
@@ -116,7 +115,6 @@ class PortfolioContainer extends React.Component {
               {portfolios}
               <div className="row">
                 <div className="columns small-6 medium-6 large-6 medium-centered large-centered small-centered">
-                  <br />
                   <h2>Create A New Portfolio</h2>
                   <PortfolioFormContainer addPortfolio={this.addPortfolio} />
                 </div>
