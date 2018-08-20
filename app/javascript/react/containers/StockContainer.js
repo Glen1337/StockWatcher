@@ -373,7 +373,7 @@ class StockContainer extends React.Component {
                 <br /><br /><br />
                 {form}
                 {errorDiv}
-                <br />
+                <br /><br /><br />
               </div>
             </div>
           </div>

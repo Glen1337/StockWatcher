@@ -110,13 +110,15 @@ class PortfolioContainer extends React.Component {
       </div>
         <div style={{height: '100vh'}} className="row">
           <div style={{margin: '0px'}} className= "row">
-            <div className="text-center columns small-12 medium-12 large-12">
-              <h1><u>Portfolios</u></h1><br /><br />
+            <div className="columns small-12 medium-12 large-12">
+              <h1 className="text-center"><u>Portfolios</u></h1><br /><br />
               {portfolios}
               <div className="row">
                 <div className="columns small-6 medium-6 large-6 medium-centered large-centered small-centered">
-                  <h2>Create A New Portfolio</h2>
-                  <PortfolioFormContainer addPortfolio={this.addPortfolio} />
+                  <h2 className="text-center">Create A New Portfolio</h2>
+                  <div className="text-left">
+                    <PortfolioFormContainer addPortfolio={this.addPortfolio} />
+                  </div>
                 </div>
                 <br />< br /><br /><br /><br /><br />
               </div>

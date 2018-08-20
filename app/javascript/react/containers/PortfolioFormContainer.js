@@ -40,7 +40,9 @@ class PortfolioFormContainer extends React.Component{
           content={this.state.name}
           handleChange={this.handleChangeName}
         />
-        <button className="button medium" type= 'submit'>Create Portfolio</button>
+        <div className="text-center">
+          <button className="button medium" type= 'submit'>Create Portfolio</button>
+        </div>
       </form>
     );
   }
