@@ -139,13 +139,13 @@ class PortfolioTile extends Component {
             <h2>{this.state.name}</h2>
             </div>
             <div className="text-center small-6 large-6 medium-6 columns data-equalizer-watch">
-              <h4>
+              <h4 style={{paddingTop: '1rem'}}>
                 Current value: ${NumOutput(currentPortfolioValue)} &nbsp;
                 Original value: ${NumOutput(originalPortfolioValue)}&nbsp;&nbsp;
               </h4>
             </div>
             <div className="text-left small-3 large-3 medium-3 columns data-equalizer-watch">
-              <button className="button tiny" onClick={this.props.deleteClick}>Delete Portfolio</button>
+              <button style={{marginTop: '1rem'}} className="button tiny" onClick={this.props.deleteClick}>Delete Portfolio</button>
             </div>
           </div>
           <div className="row">
