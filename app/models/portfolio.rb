@@ -1,6 +1,7 @@
 class Portfolio < ApplicationRecord
   belongs_to :user
   has_many :stock_holdings, dependent: :destroy
+  validates :user, presence: true
   validates :name, presence: true, uniqueness: {
     scope: :user_id
   }

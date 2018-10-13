@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   #pending "add some examples to (or delete) #{__FILE__}"
 
   describe "validations and initializations" do
-    let!(:user1) { FactoryBot.build(:user) }
+    let!(:user1) { FactoryBot.build(:user, username: "user1") }
 
     # let (:user1){
     #   User.new(username: "testuser", email: "testuser@sample.com", password: "passwordtest")
@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     end
 
     it "user has a username" do
-      expect(user1.username).to eq("user2")
+      expect(user1.username).to eq("user1")
       expect(user1).to be_valid
 
       user1.username = ""
