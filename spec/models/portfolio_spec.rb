@@ -20,8 +20,8 @@ RSpec.describe Portfolio, type: :model do
 
     it "portfolio belongs to correct user" do
       expect(portfolio1.user.id).to eq(3)
-      portfolio1.user.id = nil
-      expect(portfolio1).to be_valid
+      portfolio1.user = nil
+      expect(portfolio1).to_not be_valid
     end
 
   end

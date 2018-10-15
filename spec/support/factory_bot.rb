@@ -15,4 +15,8 @@ FactoryBot.define do
     sequence(:name) {|n| "sector#{n}"}
   end
 
+  factory :stock_holding do
+
+  end
+  
 end
